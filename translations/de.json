@@ -80,6 +80,7 @@
       "delete": "Zutat löschen und überall entfernen",
       "name": "Name",
       "unit": "Einheit",
+      "category": "Kategorie",
       "save": "Zutat speichern"
     }
   },
