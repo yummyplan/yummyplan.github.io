@@ -1,4 +1,3 @@
-import { IngredientCategory } from '~/model/meal/IngredientCategory'
 <template>
   <div class="flex flex-wrap font-sans">
     <weekplan-table id="weekplan" class="w-full md:w-2/3 font-sans" :show-current-day="!downloading">
