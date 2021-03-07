@@ -80,6 +80,7 @@
       "delete": "Delete ingredient and remove everywhere",
       "name": "Name",
       "unit": "Unit",
+      "category": "Category",
       "save": "Save ingredient"
     }
   },
