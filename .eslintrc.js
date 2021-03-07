@@ -1,0 +1,13 @@
+module.exports = {
+  parser: 'vue-eslint-parser',
+  extends: [
+    '@nuxtjs/eslint-config-typescript',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:vue/recommended'
+  ],
+  rules: {
+    '@typescript-eslint/explicit-function-return-type': ['error'],
+    'lines-between-class-members': ['error', 'always', { exceptAfterSingleLine: true }],
+    'space-before-function-paren': ['error']
+  }
+}

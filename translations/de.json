@@ -1,0 +1,137 @@
+{
+  "modal": {
+    "close": "Schliessen"
+  },
+  "header": {
+    "plan": "Plan",
+    "menus": "Menüs",
+    "ingredients": "Zutaten",
+    "tags": "Tags"
+  },
+  "weekdays": {
+    "mon": "Mo",
+    "tue": "Di",
+    "wed": "Mi",
+    "thu": "Do",
+    "fri": "Fr",
+    "sat": "Sa",
+    "sun": "So"
+  },
+  "daytimes": {
+    "breakfast": "Früh&shy;stück",
+    "lunch": "Mittag&shy;essen",
+    "dinner": "Abend&shy;essen"
+  },
+  "index": {
+    "title": "Wochenplan"
+  },
+  "search": {
+    "title": "Suche",
+    "hint": "Titel oder Tags, Oder-Suche mit \",\", Und-Suche mit \"&\"",
+    "showingXofY": "Zeige {x} von {y}"
+  },
+  "plan": {
+    "random": "Zufall (nur leere)",
+    "groceryList": "Einkaufsliste",
+    "ingredients": "Zutaten",
+    "download": "Wochenplan downloaden",
+    "downloadPdf": "PDF",
+    "downloadPng": "PNG",
+    "noIngredients": "Keine Zutaten nötig"
+  },
+  "settings": {
+    "title": "Einstellungen",
+    "backupAndRestore": "Sichern und wiederherstellen",
+    "backupAndRestoreText": "Dieses Tool speichert Daten nur im sog. Local Storage des Browsers. Setzen Sie diesen zurück, so sind auch alle Ihre Daten weg. Wenn Sie sie nicht verlieren wollen, können Sie hier Ihre Daten downloaden oder wiederherstellen.",
+    "downloadData": "Daten auf Festplatte speichern",
+    "restoreData": "Daten wiederherstellen",
+    "randomize": "Zufallsgenerator einstellen",
+    "randomizeText": "Der Zufallsgenerator für den Wochenplan funktioniert besser, wenn einzelne Tags den Tagen zugeordnet werden. Der Zufallesgenerator wählt nur Menüs mit Tags aus, die an den entsprechenden Mahlzeiten auch erlaubt sind. Standardmässig sind alle Tags an allen Tagen erlaubt, Tageszeiten sind entsprechend eingestellt.",
+    "randomizeHint": "Tags mit drag and drop auf dem Wochenplan hinzufügen"
+  },
+  "meals": {
+    "title": "Menüs erstellen, bearbeiten und löschen",
+    "introduction": "Hier kannst du neue Menüs hinzufügen, bestehende Menüs anpassen und unnötige Menüs löschen. Ein Menü besteht aus einem Namen, optional aus einem Link zu einem Rezept und/oder Notizen und einer Liste von Zutaten und Tags",
+    "edit": {
+      "new": "Neues Menü",
+      "modalTitle": "Menü bearbeiten",
+      "delete": "Menü löschen",
+      "title": "Name des Menüs",
+      "url": "Link zum Rezept",
+      "notes": "Notizen (z.B. Seite im Kochbuch, etc.)",
+      "tags": "Tags hinzufügen oder entfernen",
+      "tagsHint": "Durch Drag&Drop hinzufügen und entfernen",
+      "assignedTags": "Zugeordnete Tags",
+      "allTags": "Alle Tags",
+      "ingredients": "Zutaten",
+      "changeAmount": "Menge ändern",
+      "removeIngredient": "Zutat entfernen",
+      "changeIngredient": "Zutat ändern",
+      "addIngredient": "Zutat hinzufügen",
+      "save": "Menü speichern"
+    }
+  },
+  "ingredients": {
+    "title": "Zutaten erstellen, bearbeiten und löschen",
+    "introduction": "Hier kannst du neue Zutaten hinzufügen, bestehende Zutaten anpassen und unnötige Zutaten löschen. Eine Zutat besteht aus einem Namen und einer Masseinheit.",
+    "edit": {
+      "new": "Neue Zutat hinzufügen",
+      "modalTitle": "Zutat bearbeiten",
+      "delete": "Zutat löschen und überall entfernen",
+      "name": "Name",
+      "unit": "Einheit",
+      "save": "Zutat speichern"
+    }
+  },
+  "tags": {
+    "title": "Tags erstellen, bearbeiten und löschen",
+    "introduction": "Hier kannst du neue Tags hinzufügen, bestehende Tags anpassen und unnötige Tags löschen. Ein Tag besteht aus einem Namen, einer Farbe und einem Emoji als Icon.",
+    "edit": {
+      "new": "Neuen Tag hinzufügen",
+      "modalTitle": "Tag bearbeiten",
+      "delete": "Tag löschen und überall entfernen",
+      "name": "Name",
+      "color": "Farbe",
+      "icon": "Emoji-Icon",
+      "save": "Tag speichern"
+    }
+  },
+  "about": {
+    "title": "Über Yummyplan",
+    "nav": "Über Yummyplan / Spenden",
+    "text": "Yummyplan wurde mit Nuxt, Tailwind und Fontawesome gebaut und wird auf Github gehostet. Er ist unter der MIT-Lizenz veröffentlicht. Falls Fehler oder Bugs gefunden werden, oder man ein neues Feature entwickeln möchte, kann man einen Pull Request erstellen.",
+    "donate": {
+      "title": "Spenden",
+      "text": "Dieses Tool ist gratis und quelloffen. Ich habe es gebaut, um eine Menüplanung für eine ganze Woche einfacher und zugänglicher zu machen. Eine Menüplanung hilft dabei weniger oft einkaufen gehen zu müssen und Food Waste zu reduzieren, was wir alle zumindest probieren sollten. Heutzutage mehr als je zuvor. Wenn dieses Tool dir geholfen hat und du Zeit gespart hast, kaufe mir doch einen Kafee auf buymeacoffee:",
+      "paypaltext": "Oder spende direkt via Paypal"
+    }
+  },
+  "emoji": {
+    "frequentlyused": "Oft genutzt",
+    "people": "Menschen",
+    "nature": "Natur",
+    "objects": "Objekte",
+    "places": "Orte",
+    "symbols": "Symbole",
+    "open": "Emoji-Icon auswählen"
+  },
+  "categories": {
+    "fruits": "Früchte",
+    "vegetables": "Gemüse",
+    "cannedFood": "Dosen",
+    "frozenGoods": "Gefrohrenes",
+    "meat": "Fleisch",
+    "fish": "Fisch",
+    "deli": "Delikatessen",
+    "dairyAndEggs": "Milchprodukte und Eier",
+    "condimentsAndSpices": "Gewürze",
+    "saucesAndOil": "Saucen und Öl",
+    "snacks": "Snacks",
+    "breadAndBakery": "Brot und Backwaren",
+    "beverages": "Getränke",
+    "pastaAndRice": "Teigwaren und Reis",
+    "cereal": "Getreideflocken",
+    "bakingSupplies": "Backzutaten",
+    "uncategorized": "Ohne Kategorie"
+  }
+}

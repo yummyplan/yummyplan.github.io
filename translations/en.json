@@ -1,0 +1,138 @@
+{
+  "modal": {
+    "close": "Close"
+  },
+  "header": {
+    "plan": "Plan",
+    "menus": "Menus",
+    "ingredients": "Ingredients",
+    "tags": "Tags"
+  },
+  "weekdays": {
+    "mon": "Mon",
+    "tue": "Tue",
+    "wed": "Wed",
+    "thu": "Thu",
+    "fri": "Fri",
+    "sat": "Sat",
+    "sun": "Sun"
+  },
+  "daytimes": {
+    "breakfast": "Break&shy;fast",
+    "lunch": "Lunch",
+    "dinner": "Dinner"
+  },
+  "index": {
+    "title": "Week plan"
+  },
+  "search": {
+    "title": "Search",
+    "hint": "Or-search with \",\", And-search with \"&\"",
+    "showingXofY": "Showing {x} of {y}"
+  },
+  "plan": {
+    "random": "Randomize (empty only)",
+    "groceryList": "Grocery list",
+    "ingredients": "Ingredients",
+    "download": "Download the week plan",
+    "downloadPdf": "PDF",
+    "downloadPng": "PNG",
+    "noIngredients": "No ingredients necessary"
+  },
+  "settings": {
+    "title": "General settings",
+    "backupAndRestore": "Backup and restore",
+    "backupAndRestoreText": "This tool only saves data in the so-called local storage of the browser. If you reset it, all your data will be gone. If you do not want to lose the data, you can download or restore it here.",
+    "downloadData": "Save data to hard disk",
+    "restoreData": "Restore data",
+    "randomize": "Tweak randomizer",
+    "randomizeText": "The random generator for the weekly plan works better if individual tags are assigned to the days. The random generator only selects menus with tags that are also allowed on the corresponding meals. By default, all tags are allowed on all days, times of day are set accordingly.",
+    "randomizeHint": "Add tags to the week plan with drag and drop"
+  },
+  "meals": {
+    "title": "Create, edit and delete menus",
+    "introduction": "Here you can add new menus, edit existing ones or delete unnecessary ones. A menu consists of a title, optionally a link to a recipe and/or some notes, a list of ingredients and tags.",
+    "edit": {
+      "new": "Add new menu",
+      "modalTitle": "Edit menu",
+      "delete": "Delete menu",
+      "title": "Name of the menu",
+      "url": "Link to the recipe",
+      "notes": "Notes (page number in the recipe book, for example)",
+      "tags": "Add or remove tags",
+      "tagsHint": "Add or remove via drag&drop",
+      "assignedTags": "Assigned tags",
+      "allTags": "All tags",
+      "ingredients": "Ingredients",
+      "changeAmount": "Change amount",
+      "removeIngredient": "Remove ingredient",
+      "changeIngredient": "Change ingredient",
+      "addIngredient": "Add ingredient",
+      "save": "Save menu"
+    }
+  },
+  "ingredients": {
+    "title": "Create, edit and delete ingredients",
+    "introduction": "Here you can add new ingredients, edit existing ones ore delete unnecessary ones. Ingredients consist of a name and the unit they're measured in.",
+    "edit": {
+      "new": "Add new ingredient",
+      "modalTitle": "Edit ingredient",
+      "delete": "Delete ingredient and remove everywhere",
+      "name": "Name",
+      "unit": "Unit",
+      "save": "Save ingredient"
+    }
+  },
+  "tags": {
+    "title": "Create, edit and delete tags",
+    "introduction": "Here you can add new tags, edit existing ones or delete unnecessary ones. A tag consists of a name, a color and an Emoji as an icon.",
+    "edit": {
+      "new": "Add new tag",
+      "modalTitle": "Edit tag",
+      "delete": "Delete tag and remove everywhere",
+      "name": "Name",
+      "color": "Color",
+      "icon": "Emoji icon",
+      "save": "Save tag"
+    }
+  },
+  "about": {
+    "title": "About Yummyplan",
+    "nav": "About Yummyplan / donate",
+    "text": "Yummyplan was built with Nuxt, Tailwind and Fontawesome and is hosted on Github. It is published under the MIT licence. If errors or bugs are found, or if you want to develop a new feature, you can create a pull request.",
+    "donate": {
+      "title": "Donate",
+      "text": "This tool is free and open source. I built it to make menu planning for a whole week easier and more accessible. Menu planning helps you shop less often and reduce food waste, which is something we should all at least try. Nowadays more than ever. If this tool has helped you and saved you time, buy me a coffee on buymeacoffee:",
+      "paypaltext": "Or donate via Paypal"
+    }
+  },
+  "emoji": {
+    "frequentlyused": "Frequently used",
+    "people": "People",
+    "nature": "Nature",
+    "objects": "Objects",
+    "places": "Places",
+    "symbols": "Symbols",
+    "open": "Select Emoji icon"
+  },
+  "categories": {
+    "fruits": "Fruits",
+    "vegetables": "Vegetables",
+    "cannedFood": "Canned food",
+    "frozenGoods": "Frozen goods",
+    "meat": "Meat",
+    "fish": "Fish",
+    "deli": "Deli",
+    "dairyAndEggs": "Dairy products and eggs",
+    "condimentsAndSpices": "Condiments and spices",
+    "saucesAndOil": "Sauces and oil",
+    "snacks": "Snacks",
+    "breadAndBakery": "Bread and bakery",
+    "beverages": "Beverages",
+    "pastaAndRice": "Pasta and rice",
+    "cereal": "Cereal",
+    "bakingSupplies": "Baking supplies",
+    "uncategorized": "Without category"
+  }
+}
+

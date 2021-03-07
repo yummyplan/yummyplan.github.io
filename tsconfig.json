@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "lib": [
+      "esnext",
+      "esnext.asynciterable",
+      "dom"
+    ],
+    "esModuleInterop": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "sourceMap": true,
+    "strict": true,
+    "noEmit": true,
+    "baseUrl": ".",
+    "importsNotUsedAsValues": "preserve",
+    "paths": {
+      "~/*": ["./*"],
+      "@/*": ["./*"]
+    },
+    "types": [
+      "@types/node",
+      "@nuxt/types",
+      "nuxt-i18n",
+      "@types/jspdf",
+      "@types/html2canvas",
+      "@types/jest",
+      "@types/sinon"
+    ]
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}
