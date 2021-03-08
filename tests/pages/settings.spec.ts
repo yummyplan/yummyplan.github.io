@@ -70,6 +70,10 @@ describe('pages/settings.vue', () => {
         SET_TAGS: setTagsMutation
       }
     })
+
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    localStorage.setItem.mockClear()
   })
 
   test('Renders', () => {
@@ -212,5 +216,114 @@ describe('pages/settings.vue', () => {
       time: 'lunch',
       tags
     })
+  })
+
+  test('Revokes consent and wipes data', () => {
+    localStorage.setItem('cookiesAccepted', 'yes')
+    localStorage.setItem('state', '{}')
+
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    localStorage.setItem.mockClear()
+
+    const i18nCollector = new I18nCollector()
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const wrapper: Wrapper<Settings & { [key: string]: any }> = shallowMount(Settings, {
+      store,
+      localVue,
+      mocks: {
+        $t: (key: string): string => i18nCollector.tMock(key)
+      }
+    })
+
+    expect(wrapper.vm.hasAcceptedCookies).toBeTruthy()
+
+    wrapper.vm.revokeCookies()
+
+    expect(localStorage.setItem).toHaveBeenCalledWith('cookiesAccepted', 'no')
+    expect(localStorage.setItem).toHaveBeenCalledWith('state', '')
+    expect(wrapper.vm.hasAcceptedCookies).toBeFalsy()
+  })
+
+  test('Deletes all data', () => {
+    localStorage.setItem('cookiesAccepted', 'yes')
+    localStorage.setItem('state', '{}')
+
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    localStorage.setItem.mockClear()
+
+    const i18nCollector = new I18nCollector()
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const wrapper: Wrapper<Settings & { [key: string]: any }> = shallowMount(Settings, {
+      store,
+      localVue,
+      mocks: {
+        $t: (key: string): string => i18nCollector.tMock(key)
+      }
+    })
+
+    expect(wrapper.vm.hasAcceptedCookies).toBeTruthy()
+
+    wrapper.vm.deleteAllData()
+
+    expect(localStorage.setItem).not.toHaveBeenCalledWith('cookiesAccepted', 'no')
+    expect(localStorage.setItem).toHaveBeenCalledWith('state', '')
+    expect(wrapper.vm.hasAcceptedCookies).toBeTruthy()
+  })
+
+  test('Deletes no data if no data is present', () => {
+    localStorage.setItem('cookiesAccepted', 'yes')
+
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    localStorage.setItem.mockClear()
+
+    const i18nCollector = new I18nCollector()
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const wrapper: Wrapper<Settings & { [key: string]: any }> = shallowMount(Settings, {
+      store,
+      localVue,
+      mocks: {
+        $t: (key: string): string => i18nCollector.tMock(key)
+      }
+    })
+
+    expect(wrapper.vm.hasAcceptedCookies).toBeTruthy()
+
+    wrapper.vm.deleteAllData()
+
+    expect(localStorage.setItem).not.toHaveBeenCalledWith('cookiesAccepted', 'no')
+    expect(localStorage.setItem).not.toHaveBeenCalledWith('state', '')
+    expect(wrapper.vm.hasAcceptedCookies).toBeTruthy()
+  })
+
+  test('Grants consent', () => {
+    localStorage.setItem('cookiesAccepted', 'no')
+
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    localStorage.setItem.mockClear()
+
+    const i18nCollector = new I18nCollector()
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const wrapper: Wrapper<Settings & { [key: string]: any }> = shallowMount(Settings, {
+      store,
+      localVue,
+      mocks: {
+        $t: (key: string): string => i18nCollector.tMock(key)
+      }
+    })
+
+    expect(wrapper.vm.hasAcceptedCookies).toBeFalsy()
+
+    wrapper.vm.acceptCookies()
+
+    expect(localStorage.setItem).toHaveBeenCalledWith('cookiesAccepted', 'yes')
+    expect(wrapper.vm.hasAcceptedCookies).toBeTruthy()
   })
 })

@@ -47,7 +47,12 @@
     "restoreData": "Daten wiederherstellen",
     "randomize": "Zufallsgenerator einstellen",
     "randomizeText": "Der Zufallsgenerator für den Wochenplan funktioniert besser, wenn einzelne Tags den Tagen zugeordnet werden. Der Zufallesgenerator wählt nur Menüs mit Tags aus, die an den entsprechenden Mahlzeiten auch erlaubt sind. Standardmässig sind alle Tags an allen Tagen erlaubt, Tageszeiten sind entsprechend eingestellt.",
-    "randomizeHint": "Tags mit drag and drop auf dem Wochenplan hinzufügen"
+    "randomizeHint": "Tags mit drag and drop auf dem Wochenplan hinzufügen",
+    "dangerZone": "Gefahrenzone",
+    "dangerZoneText": "Hier kannst du deine Zustimmung zur Speicherung von Daten in deinem Browser erteilen oder widerrufen. Wenn du zustimmst, werden alle Menüs, Zutaten, Tags, Einstellungen etc., in deinem Browser gespeichert. Du wirst nicht getrackt. Achtung: Bei einem Widerruf werden alle Daten gelöscht!",
+    "deleteAllData": "Alle Daten löschen",
+    "revokeCookies": "Zustimmung widerrufen",
+    "acceptCookies": "Zustimmung erteilen"
   },
   "meals": {
     "title": "Menüs erstellen, bearbeiten und löschen",

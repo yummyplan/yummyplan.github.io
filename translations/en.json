@@ -47,7 +47,12 @@
     "restoreData": "Restore data",
     "randomize": "Tweak randomizer",
     "randomizeText": "The random generator for the weekly plan works better if individual tags are assigned to the days. The random generator only selects menus with tags that are also allowed on the corresponding meals. By default, all tags are allowed on all days, times of day are set accordingly.",
-    "randomizeHint": "Add tags to the week plan with drag and drop"
+    "randomizeHint": "Add tags to the week plan with drag and drop",
+    "dangerZone": "Danger zone",
+    "dangerZoneText": "Here you can give or revoke your consent to the storage of data in your browser. If you agree, all menus, ingredients, tags, settings etc. will be saved in your browser. You will not be tracked. Attention: If you revoke your consent, all data will be deleted!",
+    "deleteAllData": "Delete all data",
+    "revokeCookies": "Revoke consent",
+    "acceptCookies": "Give consent"
   },
   "meals": {
     "title": "Create, edit and delete menus",

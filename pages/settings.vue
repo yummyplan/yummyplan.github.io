@@ -36,7 +36,7 @@
       {{ $t('settings.randomizeText') }}
     </p>
 
-    <div class="flex flex-wrap">
+    <div class="flex flex-wrap mb-4">
       <weekplan-table class="w-full md:w-2/3">
         <template v-for="key in dayTimeKeys" #[key]="{ dayKey, timeKey }">
           <draggable
@@ -67,6 +67,31 @@
           </transition-group>
         </draggable>
       </div>
+    </div>
+
+    <h2 class="text-2xl mb-4">
+      {{ $t('settings.dangerZone') }}
+    </h2>
+
+    <p class="mb-4">
+      {{ $t('settings.dangerZoneText') }}
+    </p>
+
+    <div class="flex flex-wrap">
+      <f-button v-if="hasAcceptedCookies" class="mr-4 mb-4" @click="revokeCookies">
+        <font-awesome-icon :icon="['fas', 'times']" class="mr-4" />
+        {{ $t('settings.revokeCookies') }}
+      </f-button>
+
+      <f-button v-else class="mr-4 mb-4" @click="acceptCookies">
+        <font-awesome-icon :icon="['fas', 'check']" class="mr-4" />
+        {{ $t('settings.acceptCookies') }}
+      </f-button>
+
+      <f-button class="mb-4" @click="deleteAllData">
+        <font-awesome-icon :icon="['fas', 'trash']" class="mr-4" />
+        {{ $t('settings.deleteAllData') }}
+      </f-button>
     </div>
   </div>
 </template>
@@ -105,6 +130,8 @@ export default class Settings extends Vue {
 
   @Provide() days: WeekdaysType[] = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']
   @Provide() dayTimes: DayTimesType[] = ['breakfast', 'lunch', 'dinner']
+
+  @Provide() hasAcceptedCookies = localStorage.getItem('cookiesAccepted') === 'yes'
 
   get tags (): Tag[] {
     return this.$store.state.tags
@@ -192,6 +219,34 @@ export default class Settings extends Vue {
     }
 
     reader.readAsText(files[0])
+  }
+
+  /**
+   * Deletes all data
+   */
+  deleteAllData (): void {
+    const data = localStorage.getItem('state')
+
+    if (data) {
+      localStorage.setItem('state', '')
+    }
+  }
+
+  /**
+   * Accepts cookies
+   */
+  acceptCookies (): void {
+    localStorage.setItem('cookiesAccepted', 'yes')
+    this.hasAcceptedCookies = true
+  }
+
+  /**
+   * Revokes cookies
+   */
+  revokeCookies (): void {
+    localStorage.setItem('cookiesAccepted', 'no')
+    this.hasAcceptedCookies = false
+    this.deleteAllData()
   }
 }
 </script>
