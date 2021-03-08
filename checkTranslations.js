@@ -1,5 +1,5 @@
-import de from './translations/de'
-import en from './translations/en'
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const languages = require('./translations')
 
 const result = {}
 
@@ -11,23 +11,28 @@ const compare = (a, b, keySoFar, nameOfB) => {
     if (typeof b[key] === 'object' && b[key] !== null) {
       compare(a[key], b[key], newKey, nameOfB)
     } else if (typeof a[key] === 'string') {
-      result[newKey] = {}
+      if (!result[newKey]) {
+        result[newKey] = {}
+      }
 
       if (b[key] === null) {
-        result[newKey]['Comparison source (en)'] = '-'
         result[newKey][nameOfB] = 'Missing'
       } else if (a[key] === b[key]) {
-        result[newKey]['Comparison source (en)'] = '-'
         result[newKey][nameOfB] = 'Untranslated'
       } else {
-        result[newKey]['Comparison source (en)'] = '-'
         result[newKey][nameOfB] = 'Translated'
       }
     }
   })
 }
 
-compare(en, de, '', 'DE')
+Object.keys(languages).forEach((key) => {
+  if (key === 'en') {
+    return
+  }
+
+  compare(languages.en, languages[key], '', key.toUpperCase())
+})
 
 // eslint-disable-next-line no-console
 console.table(result)

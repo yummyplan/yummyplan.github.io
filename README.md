@@ -22,6 +22,15 @@ Some default content is available in both german and english, but own meals and 
 
 Check it out here: [yummyplan.github.io](https://yummyplan.github.io)
 
+### Available languages
+
+Yummyplan is currently available in these languages:
+
+ - *English*
+ - *German*
+
+If you want to contribute a translation, you can do so by adding a new JSON file with the ISO-639-1 code (2 characters) to the `translations/` folder and start translating.
+
 ### Some screenshots
 
 | Week plan                                                                    | Editing meals                                                              |

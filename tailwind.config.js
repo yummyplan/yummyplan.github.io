@@ -1,5 +1,13 @@
 module.exports = {
+  purge: [
+    './**/*.html',
+    './**/*.vue',
+    './**/*.ts'
+  ],
   theme: {
+    fontFamily: {
+      sans: "'Nanum Gothic', sans-serif;"
+    },
     filter: { // defaults to {}
       none: 'none',
       grayscale: 'grayscale(1)',

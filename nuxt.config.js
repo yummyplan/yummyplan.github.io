@@ -24,7 +24,8 @@ export default {
   loading: { color: '#fff' },
 
   css: [
-    { src: '@node_modules/@fortawesome/fontawesome', lang: 'css' }
+    { src: '@node_modules/@fortawesome/fontawesome', lang: 'css' },
+    { src: 'assets/css/fonts.css', lang: 'css' }
   ],
 
   plugins: [
