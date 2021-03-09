@@ -139,8 +139,8 @@ const mealPlan = new Mealplan(
 )
 
 const tagsBreakfast = [tags.breakfast, tags.fast]
-const tagsLunch = [tags.lunch, tags.noCooking]
-const tagsDinner = [tags.dinner, tags.noCooking]
+const tagsLunch = [tags.lunch]
+const tagsDinner = [tags.dinner]
 
 /**
  * Standard tag config
