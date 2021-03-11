@@ -13,7 +13,7 @@ import { Dayplan, DayTimesType } from '~/model/store/Dayplan'
 import { Mealplan } from '~/model/store/Mealplan'
 import { AllowedTags } from '~/model/store/AllowedTags'
 import { MealIngredient } from '~/model/meal/MealIngredient'
-import { IngredientCategory } from '~/model/meal/IngredientCategory'
+import { GroceryListItem } from '~/model/groceryList/GroceryListItem'
 
 export const saveInLocalStorage = (state: MealplanStore): void => {
   if (localStorage.getItem('cookiesAccepted') !== 'yes') {
@@ -345,7 +345,7 @@ export class MealplanStore extends VuexModule implements MealplanInterface {
   /**
    * Builds an array of all used ingredients in the mealPlan.
    */
-  get groceryList (): { name: string, amount: string, meals: string[] }[] {
+  get groceryList (): GroceryListItem[] {
     const allMeals = [...this.mealPlan.allMeals]
 
     if (allMeals.length === 0) {
@@ -386,14 +386,9 @@ export class MealplanStore extends VuexModule implements MealplanInterface {
       })
     })
 
-    const groceryList: { name: string, amount: string, meals: string[], category: IngredientCategory | null }[] = []
+    const groceryList: GroceryListItem[] = []
     groceryMap.forEach((value, key) => {
-      groceryList.push({
-        name: key,
-        amount: value.value + ' ' + value.unit,
-        meals: value.meals,
-        category: value.category
-      })
+      groceryList.push(new GroceryListItem(key, value.value + ' ' + value.unit, value.meals, value.category))
     })
 
     return groceryList

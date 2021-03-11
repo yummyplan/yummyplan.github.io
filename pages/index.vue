@@ -99,9 +99,16 @@
     </div>
 
     <f-modal ref="groceryListModal">
-      <h2 class="text-xl mb-4">
-        {{ $t('plan.groceryList') }}
-      </h2>
+      <div class="flex items-center">
+        <h2 class="text-xl mb-4 flex-1">
+          {{ $t('plan.groceryList') }}
+        </h2>
+        <f-button class="flex-0" @click="downloadGroceryListAsPdf">
+          <font-awesome-icon v-if="!downloading" :icon="['fas', 'file-pdf']" class="mr-4" />
+          <font-awesome-icon v-else :icon="['fas', 'spinner']" class="mr-4 animate-spin" />
+          {{ $t('plan.downloadPdf') }}
+        </f-button>
+      </div>
 
       <section v-for="groceryItemCategory in Object.keys(categorizedGroceryList)" :key="groceryItemCategory">
         <h3
@@ -112,9 +119,20 @@
         </h3>
 
         <ul v-if="categorizedGroceryList[groceryItemCategory].length > 0" class="list-disc">
-          <li v-for="groceryItem in categorizedGroceryList[groceryItemCategory]" :key="groceryItem.name" class="ml-6 mb-2">
-            <span class="font-bold ml-4">{{ groceryItem.amount }}</span> {{ groceryItem.name }}
-            <span class="text-xs ml-4">({{ groceryItem.meals.join(' / ') }})</span>
+          <li
+            v-for="groceryItem in categorizedGroceryList[groceryItemCategory]"
+            :key="groceryItem.name"
+            class="ml-6 mb-2"
+            :class="{
+              'line-through': tickedOffGroceryItems.includes(groceryItem),
+              'text-gray-600': tickedOffGroceryItems.includes(groceryItem),
+            }"
+          >
+            <label :for="`grocery_item_${groceryItem.name}`" class="cursor-pointer">
+              <input :id="`grocery_item_${groceryItem.name}`" type="checkbox" @change="toggleGroceryListItemTicked(groceryItem)">
+              <span class="font-bold ml-4">{{ groceryItem.amount }}</span> {{ groceryItem.name }}
+              <span class="text-xs ml-4">({{ groceryItem.meals.join(' / ') }})</span>
+            </label>
           </li>
         </ul>
       </section>
@@ -154,7 +172,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Mixins, Provide } from 'vue-property-decorator'
+import { Vue, Component, Mixins, Provide } from 'vue-property-decorator'
 import Draggable from 'vuedraggable'
 import { Meal } from '~/model/meal/Meal'
 import MealCard from '~/components/Weekplan/MealCard.vue'
@@ -169,18 +187,18 @@ import WeekplanTable from '~/components/Weekplan/WeekplanTable.vue'
 import SearchableMealList from '~/components/SearchableList/SearchableMealList.ts'
 import { DayplanType } from '~/model/store/DayplanType'
 import { IngredientCategory } from '~/model/meal/IngredientCategory'
-import DownloadMixin from '~/mixins/Download.ts'
+import DownloadMixin from '~/mixins/DownloadMixin.ts'
+import { GroceryListItem } from '~/model/groceryList/GroceryListItem'
 
 @Component({
   components: { WeekplanTable, FModal, MealCard, FButton, TagPill, SearchableMealList, Draggable },
-  mixins: [DownloadMixin],
   head (this: Index) {
     return {
       title: this.$t('index.title') as string
     }
   }
 })
-export default class Index extends Mixins(DownloadMixin) {
+export default class Index extends Mixins(Vue, DownloadMixin) {
   $refs!: {
     mealDetailModal: FModalInterface,
     groceryListModal: FModalInterface,
@@ -198,6 +216,8 @@ export default class Index extends Mixins(DownloadMixin) {
 
   @Provide() downloading = false
 
+  @Provide() tickedOffGroceryItems: GroceryListItem[] = []
+
   /**
    * Keys for weekday table slots.
    */
@@ -210,11 +230,8 @@ export default class Index extends Mixins(DownloadMixin) {
     return keys
   }
 
-  /**
-   * Grocery list by categories
-   */
-  get categorizedGroceryList (): { [key in IngredientCategory]: { name: string, meals: string[], amount: string }[] } {
-    const categorizedGroceryList: { [key in IngredientCategory]: { name: string, meals: string[], amount: string }[] } = {
+  categorizeGroceryItems (items: GroceryListItem[]): { [key in IngredientCategory]: GroceryListItem[] } {
+    const categorized: { [key in IngredientCategory]: GroceryListItem[] } = {
       uncategorized: [],
       fruits: [],
       vegetables: [],
@@ -234,11 +251,26 @@ export default class Index extends Mixins(DownloadMixin) {
       bakingSupplies: []
     }
 
-    this.$store.getters.groceryList.forEach((groceryItem: { name: string, meals: string[], amount: string, category: IngredientCategory }) => {
-      categorizedGroceryList[groceryItem.category].push(groceryItem)
+    items.forEach((item: GroceryListItem) => {
+      categorized[item.category].push(item)
     })
 
-    return categorizedGroceryList
+    return categorized
+  }
+
+  /**
+   * Grocery list by categories
+   */
+  get categorizedGroceryList (): { [key in IngredientCategory]: GroceryListItem[] } {
+    return this.categorizeGroceryItems(this.$store.getters.groceryList)
+  }
+
+  get untickedCategorizedGroceryList (): { [key in IngredientCategory]: GroceryListItem[] } {
+    const filteredGroceryList = this.$store.getters.groceryList.filter((item: GroceryListItem) => {
+      return !this.tickedOffGroceryItems.includes(item)
+    })
+
+    return this.categorizeGroceryItems(filteredGroceryList)
   }
 
   /**
@@ -314,6 +346,8 @@ export default class Index extends Mixins(DownloadMixin) {
    * @param meal
    */
   assign (day: WeekdaysType, time: DayTimesType, meal: Meal): void {
+    this.tickedOffGroceryItems = []
+
     this.$store.commit('SET_MEAL_AT_DAY_AND_TIME', {
       day,
       time,
@@ -327,6 +361,8 @@ export default class Index extends Mixins(DownloadMixin) {
    * @param time
    */
   unassign (day: WeekdaysType, time: DayTimesType): void {
+    this.tickedOffGroceryItems = []
+
     this.$store.commit('SET_MEAL_AT_DAY_AND_TIME', {
       day,
       time,
@@ -359,7 +395,11 @@ export default class Index extends Mixins(DownloadMixin) {
    * Downloads the weekplan as PDF
    */
   downloadWeekplanAsPdf (): Promise<void> /* istanbul ignore next */ {
-    return this.downloadAsPdf('#weekplan', 'yummyplan')
+    return this.downloadSelectorAsPdf('#weekplan', 'yummyplan')
+  }
+
+  downloadGroceryListAsPdf (): void {
+    this.downloadCatgeorizedGroceryItemsAsPdf(this.untickedCategorizedGroceryList)
   }
 
   /**
@@ -372,6 +412,20 @@ export default class Index extends Mixins(DownloadMixin) {
     download.href = img as string
     download.download = 'yummyplan.png'
     download.click()
+  }
+
+  /**
+   * Toggles if an item on the grocery list is ticked off (either bought or available)
+   * @param groceryItem
+   */
+  toggleGroceryListItemTicked (groceryItem: GroceryListItem): void {
+    const index = this.tickedOffGroceryItems.indexOf(groceryItem)
+
+    if (index !== -1) {
+      this.tickedOffGroceryItems.splice(index, 1)
+    } else {
+      this.tickedOffGroceryItems.push(groceryItem)
+    }
   }
 }
 </script>
