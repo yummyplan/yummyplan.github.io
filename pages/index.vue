@@ -174,6 +174,7 @@
 <script lang="ts">
 import { Vue, Component, Mixins, Provide } from 'vue-property-decorator'
 import Draggable from 'vuedraggable'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { Meal } from '~/model/meal/Meal'
 import MealCard from '~/components/Weekplan/MealCard.vue'
 import FButton from '~/components/FButton.vue'
@@ -191,14 +192,15 @@ import DownloadMixin from '~/mixins/DownloadMixin.ts'
 import { GroceryListItem } from '~/model/groceryList/GroceryListItem'
 
 @Component({
-  components: { WeekplanTable, FModal, MealCard, FButton, TagPill, SearchableMealList, Draggable },
+  components: { WeekplanTable, FModal, MealCard, FButton, TagPill, SearchableMealList, Draggable, FontAwesomeIcon },
+  mixins: [DownloadMixin],
   head (this: Index) {
     return {
       title: this.$t('index.title') as string
     }
   }
 })
-export default class Index extends Mixins(Vue, DownloadMixin) {
+export default class Index extends Mixins(DownloadMixin) {
   $refs!: {
     mealDetailModal: FModalInterface,
     groceryListModal: FModalInterface,

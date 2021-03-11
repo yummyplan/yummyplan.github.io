@@ -56,9 +56,9 @@ describe('pages/index.vue', () => {
     new Meal('Meal C', '', [tags[2]], [new MealIngredient(ingredients[0], 12), new MealIngredient(ingredients[2], 7)], '')
   ]
 
-  jest.mock('~/mixins/Download.ts', () => ({
+  jest.mock('~/mixins/DownloadMixin.ts', () => ({
     createPng: createPngSpy,
-    downloadAsPdf: downloadAsPdfSpy
+    downloadSelectorAsPdf: downloadAsPdfSpy
   }))
 
   beforeEach(() => {
@@ -279,11 +279,11 @@ describe('pages/index.vue', () => {
       }
     })
 
-    wrapper.vm.downloadAsPdf = spy()
+    wrapper.vm.downloadSelectorAsPdf = spy()
 
     wrapper.vm.downloadWeekplanAsPdf()
 
-    expect(wrapper.vm.downloadAsPdf).toHaveBeenCalledWith('#weekplan', 'yummyplan')
+    expect(wrapper.vm.downloadSelectorAsPdf).toHaveBeenCalledWith('#weekplan', 'yummyplan')
   })
 
   test('Download weekplan as PNG', async () => {
