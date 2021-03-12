@@ -99,7 +99,7 @@
     </div>
 
     <f-modal ref="groceryListModal">
-      <div class="flex items-center">
+      <div class="flex items-center my-4">
         <h2 class="text-xl mb-4 flex-1">
           {{ $t('plan.groceryList') }}
         </h2>
@@ -172,7 +172,7 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Mixins, Provide } from 'vue-property-decorator'
+import { Component, Mixins, Provide } from 'vue-property-decorator'
 import Draggable from 'vuedraggable'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { Meal } from '~/model/meal/Meal'

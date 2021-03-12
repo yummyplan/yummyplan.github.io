@@ -21,8 +21,8 @@
           {{ $t(`${translationKey}.edit.modalTitle`) }}
         </h2>
 
-        <div>
-          <f-button class="flex-0" @click="deleteEntity(editingEntity)">
+        <div class="flex-0">
+          <f-button @click="deleteEntity(editingEntity)">
             <font-awesome-icon :icon="['fas', 'trash']" class="mr-4" />
             {{ $t(`${translationKey}.edit.delete`) }}
           </f-button>
