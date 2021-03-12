@@ -2,8 +2,6 @@ import IgnoreNotFoundExportPlugin from './IgnoreNotFoundExportPlugin'
 import de from './translations/de'
 import en from './translations/en'
 
-const PRIMARY_HOSTS = 'yummyplan.github.io'
-
 export default {
   target: 'static',
   ssr: false,
@@ -22,7 +20,8 @@ export default {
       {
         'http-equiv': 'Content-Security-Policy',
         content: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; worker-src 'self'"
-      }
+      },
+      { hid: 'og:image', property: 'og:image', content: '/logo_text.png' }
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
