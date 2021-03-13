@@ -31,7 +31,7 @@
     "showingXofY": "Mostrando {x} de {y}"
   },
   "plan": {
-    "random": "Aleatorizar (sólo vacío)",
+    "random": "Aleatorio (sólo vacío)",
     "groceryList": "Lista de la compra",
     "ingredients": "Ingredientes",
     "download": "Descargar plan semanal",
