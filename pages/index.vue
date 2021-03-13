@@ -267,6 +267,9 @@ export default class Index extends Mixins(DownloadMixin) {
     return this.categorizeGroceryItems(this.$store.getters.groceryList)
   }
 
+  /**
+   * List of all grocery items that have not been ticked off, by categories.
+   */
   get untickedCategorizedGroceryList (): { [key in IngredientCategory]: GroceryListItem[] } {
     const filteredGroceryList = this.$store.getters.groceryList.filter((item: GroceryListItem) => {
       return !this.tickedOffGroceryItems.includes(item)
@@ -400,6 +403,9 @@ export default class Index extends Mixins(DownloadMixin) {
     return this.downloadSelectorAsPdf('#weekplan', 'yummyplan')
   }
 
+  /**
+   * Downloads the grocery list as PDF, minus unticked items
+   */
   downloadGroceryListAsPdf (): void {
     this.downloadCatgeorizedGroceryItemsAsPdf(this.untickedCategorizedGroceryList)
   }

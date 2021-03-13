@@ -15,7 +15,7 @@
     "check-i18n": "node ./checkTranslations.js"
   },
   "lint-staged": {
-    "*.{js,vue}": "eslint"
+    "*.{js,ts,vue}": "eslint"
   },
   "husky": {
     "hooks": {

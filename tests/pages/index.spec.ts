@@ -12,6 +12,7 @@ import { Ingredient } from '~/model/meal/Ingredient'
 import { IngredientCategory } from '~/model/meal/IngredientCategory'
 import { Color } from '~/model/tag/Color'
 import { MealIngredient } from '~/model/meal/MealIngredient'
+import { GroceryListItem } from '~/model/groceryList/GroceryListItem'
 
 const localVue = createLocalVue()
 localVue.use(Vuex)
@@ -107,9 +108,9 @@ describe('pages/index.vue', () => {
     const i18nCollector = new I18nCollector()
 
     groceryList = [
-      { name: 'Grocery Item A', meals: ['Meal A'], amount: '100', category: IngredientCategory.deli },
-      { name: 'Grocery Item B', meals: ['Meal A', 'Meal B'], amount: '200', category: IngredientCategory.deli },
-      { name: 'Grocery Item C', meals: ['Meal C', 'Meal B'], amount: '300', category: IngredientCategory.snacks }
+      new GroceryListItem('Grocery Item A', '100', ['Meal A'], IngredientCategory.deli),
+      new GroceryListItem('Grocery Item B', '200', ['Meal A', 'Meal B'], IngredientCategory.deli),
+      new GroceryListItem('Grocery Item C', '300', ['Meal C', 'Meal B'], IngredientCategory.snacks)
     ]
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -129,29 +130,14 @@ describe('pages/index.vue', () => {
       frozenGoods: [],
       meat: [],
       fish: [],
-      deli:
-        [{
-          name: 'Grocery Item A',
-          meals: ['Meal A'],
-          amount: '100',
-          category: 'deli'
-        },
-        {
-          name: 'Grocery Item B',
-          meals: ['Meal A', 'Meal B'],
-          amount: '200',
-          category: 'deli'
-        }],
+      deli: [
+        groceryList[0],
+        groceryList[1]
+      ],
       dairyAndEggs: [],
       condimentsAndSpices: [],
       saucesAndOil: [],
-      snacks:
-        [{
-          name: 'Grocery Item C',
-          meals: ['Meal C', 'Meal B'],
-          amount: '300',
-          category: 'snacks'
-        }],
+      snacks: [groceryList[2]],
       breadAndBakery: [],
       beverages: [],
       pastaAndRice: [],
@@ -160,6 +146,81 @@ describe('pages/index.vue', () => {
     }
 
     expect(wrapper.vm.categorizedGroceryList).toEqual(expectedGroceryList)
+  })
+
+  test('Updates unticked grocery list', () => {
+    const i18nCollector = new I18nCollector()
+
+    groceryList = [
+      new GroceryListItem('Grocery Item A', '100', ['Meal A'], IngredientCategory.deli),
+      new GroceryListItem('Grocery Item B', '200', ['Meal A', 'Meal B'], IngredientCategory.deli),
+      new GroceryListItem('Grocery Item C', '300', ['Meal C', 'Meal B'], IngredientCategory.snacks)
+    ]
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const wrapper: Wrapper<Index & { [key: string]: any }> = shallowMount(Index, {
+      store,
+      localVue,
+      mocks: {
+        $t: (key: string): string => i18nCollector.tMock(key)
+      }
+    })
+
+    const expectedGroceryList = {
+      uncategorized: [],
+      fruits: [],
+      vegetables: [],
+      cannedFood: [],
+      frozenGoods: [],
+      meat: [],
+      fish: [],
+      deli: [
+        groceryList[0],
+        groceryList[1]
+      ],
+      dairyAndEggs: [],
+      condimentsAndSpices: [],
+      saucesAndOil: [],
+      snacks: [groceryList[2]],
+      breadAndBakery: [],
+      beverages: [],
+      pastaAndRice: [],
+      cereal: [],
+      bakingSupplies: []
+    }
+
+    const expectedTickedGroceryList = {
+      uncategorized: [],
+      fruits: [],
+      vegetables: [],
+      cannedFood: [],
+      frozenGoods: [],
+      meat: [],
+      fish: [],
+      deli: [
+        groceryList[0],
+        groceryList[1]
+      ],
+      dairyAndEggs: [],
+      condimentsAndSpices: [],
+      saucesAndOil: [],
+      snacks: [],
+      breadAndBakery: [],
+      beverages: [],
+      pastaAndRice: [],
+      cereal: [],
+      bakingSupplies: []
+    }
+
+    expect(wrapper.vm.untickedCategorizedGroceryList).toEqual(expectedGroceryList)
+
+    wrapper.vm.toggleGroceryListItemTicked(groceryList[2])
+
+    expect(wrapper.vm.untickedCategorizedGroceryList).toEqual(expectedTickedGroceryList)
+
+    wrapper.vm.toggleGroceryListItemTicked(groceryList[2])
+
+    expect(wrapper.vm.untickedCategorizedGroceryList).toEqual(expectedGroceryList)
   })
 
   test('Updates meal plan in store', () => {
@@ -309,6 +370,83 @@ describe('pages/index.vue', () => {
     await wrapper.vm.downloadWeekplanAsPng()
 
     expect(wrapper.vm.createPng).toHaveBeenCalledWith('#weekplan')
+  })
+
+  test('Download grocery list as PDF', () => {
+    const i18nCollector = new I18nCollector()
+
+    groceryList = [
+      new GroceryListItem('Grocery Item A', '100', ['Meal A'], IngredientCategory.deli),
+      new GroceryListItem('Grocery Item B', '200', ['Meal A', 'Meal B'], IngredientCategory.deli),
+      new GroceryListItem('Grocery Item C', '300', ['Meal C', 'Meal B'], IngredientCategory.snacks)
+    ]
+
+    const expectedGroceryList = {
+      uncategorized: [],
+      fruits: [],
+      vegetables: [],
+      cannedFood: [],
+      frozenGoods: [],
+      meat: [],
+      fish: [],
+      deli: [
+        groceryList[0],
+        groceryList[1]
+      ],
+      dairyAndEggs: [],
+      condimentsAndSpices: [],
+      saucesAndOil: [],
+      snacks: [groceryList[2]],
+      breadAndBakery: [],
+      beverages: [],
+      pastaAndRice: [],
+      cereal: [],
+      bakingSupplies: []
+    }
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const wrapper: Wrapper<Index & { [key: string]: any }> = shallowMount(Index, {
+      store,
+      localVue,
+      mocks: {
+        $t: (key: string): string => i18nCollector.tMock(key)
+      }
+    })
+
+    wrapper.vm.downloadCatgeorizedGroceryItemsAsPdf = spy()
+
+    wrapper.vm.downloadGroceryListAsPdf()
+
+    expect(wrapper.vm.downloadCatgeorizedGroceryItemsAsPdf).toHaveBeenCalledWith(expectedGroceryList)
+
+    const expectedTickedGroceryList = {
+      uncategorized: [],
+      fruits: [],
+      vegetables: [],
+      cannedFood: [],
+      frozenGoods: [],
+      meat: [],
+      fish: [],
+      deli: [
+        groceryList[0],
+        groceryList[1]
+      ],
+      dairyAndEggs: [],
+      condimentsAndSpices: [],
+      saucesAndOil: [],
+      snacks: [],
+      breadAndBakery: [],
+      beverages: [],
+      pastaAndRice: [],
+      cereal: [],
+      bakingSupplies: []
+    }
+
+    wrapper.vm.toggleGroceryListItemTicked(groceryList[2])
+
+    wrapper.vm.downloadGroceryListAsPdf()
+
+    expect(wrapper.vm.downloadCatgeorizedGroceryItemsAsPdf).toHaveBeenCalledWith(expectedTickedGroceryList)
   })
 
   test('Shows detail modal', async () => {
