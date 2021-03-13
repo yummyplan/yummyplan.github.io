@@ -9,13 +9,19 @@
     </nuxt-link>
 
     <div class="order-2 md:order-1">
-      <nuxt-link
-        v-for="locale in $i18n.locales"
-        :key="locale.code"
-        :to="switchLocalePath(locale.code)"
+      <select
+        class="border-b-2 border-black bg-transparent focus:bg-yellow-200 p-2 outline-none mr-4 flex-1 w-full"
+        @input="e => $i18n.setLocale(e.target.value)"
       >
-        {{ locale.name }}
-      </nuxt-link>
+        <option
+          v-for="locale in $i18n.locales"
+          :key="locale.code"
+          :selected="$i18n.locale === locale.code"
+          :value="locale.code"
+        >
+          {{ locale.name }}
+        </option>
+      </select>
     </div>
 
     <img src="/logo_textonly.svg" alt="Yummyplan logo" class="logo order-1 md:order-2 w-full md:w-auto md:ml-auto">

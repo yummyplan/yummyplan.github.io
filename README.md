@@ -28,6 +28,7 @@ Yummyplan is currently available in these languages:
 
  - *English*
  - *German*
+ - *Spanish* (Thank you [OscarRivasGonzalezProg](https://github.com/OscarRivasGonzalezProg) and [josevill](https://github.com/josevill)!)
 
 If you want to contribute a translation, you can do so by adding a new JSON file with the ISO-639-1 code (2 characters) to the `translations/` folder and start translating.
 

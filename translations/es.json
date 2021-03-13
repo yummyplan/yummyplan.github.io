@@ -31,7 +31,7 @@
     "showingXofY": "Mostrando {x} de {y}"
   },
   "plan": {
-    "random": "Randomize (empty only)",
+    "random": "Aleatorizar (sólo vacío)",
     "groceryList": "Lista de la compra",
     "ingredients": "Ingredientes",
     "download": "Descargar plan semanal",
@@ -42,11 +42,7 @@
   "settings": {
     "title": "Ajustes generales",
     "backupAndRestore": "Copia de seguridad y restauración",
-    "backupAndRestoreText": "Esta herramienta solo guarda los datos en la memoria local del buscador. En el caso de resetearla se perderán los datos. Si 
-    This tool only saves data in the so - called local storage of the browser.If you reset it,
-    all your data will be gone.Si no quieres perder los datos,
-    puedes descargarlos o restaurarlos aquí.
-    ",
+    "backupAndRestoreText": "Esta herramienta solo guarda los datos en la memoria local del buscador. En el caso de resetearla se perderán los datos. Si no quieres perder los datos, puedes descargarlos o restaurarlos aquí.",
     "downloadData": "Guardar datos en disco",
     "restoreData": "Restaurar datos",
     "randomize": "Ajustar el aleatorizador",
@@ -124,7 +120,7 @@
     "fruits": "Frutas",
     "vegetables": "Vegetales",
     "cannedFood": "Comida enlatada",
-    "frozenGoods": "Comida congelada,
+    "frozenGoods": "Comida congelada",
     "meat": "Carne",
     "fish": "Pescado",
     "deli": "Deli",

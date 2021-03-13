@@ -1,6 +1,7 @@
 import IgnoreNotFoundExportPlugin from './IgnoreNotFoundExportPlugin'
 import de from './translations/de'
 import en from './translations/en'
+import es from './translations/es'
 
 export default {
   target: 'static',
@@ -75,13 +76,17 @@ export default {
     }, {
       code: 'de',
       name: 'DE'
+    }, {
+      code: 'es',
+      name: 'ES'
     }],
     defaultLocale: 'en',
     vueI18n: {
       fallbackLocale: 'en',
       messages: {
         de,
-        en
+        en,
+        es
       }
     }
   },
