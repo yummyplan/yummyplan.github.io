@@ -1,0 +1,142 @@
+{
+  "modal": {
+    "close": "Cerrar"
+  },
+  "header": {
+    "plan": "Plan",
+    "menus": "Menú",
+    "ingredients": "Ingredientes",
+    "tags": "Tags"
+  },
+  "weekdays": {
+    "mon": "L.",
+    "tue": "M.",
+    "wed": "X.",
+    "thu": "J.",
+    "fri": "V.",
+    "sat": "S.",
+    "sun": "D."
+  },
+  "daytimes": {
+    "breakfast": "Desayuno",
+    "lunch": "Comida",
+    "dinner": "Cena"
+  },
+  "index": {
+    "title": "Plan semanal"
+  },
+  "search": {
+    "title": "Búsqueda",
+    "hint": "Búsqueda 'o' \",\", Búsqueda inclusiva \"&\"",
+    "showingXofY": "Mostrando {x} de {y}"
+  },
+  "plan": {
+    "random": "Randomize (empty only)",
+    "groceryList": "Lista de la compra",
+    "ingredients": "Ingredientes",
+    "download": "Descargar plan semanal",
+    "downloadPdf": "PDF",
+    "downloadPng": "PNG",
+    "noIngredients": "No se necesitan ingredientes"
+  },
+  "settings": {
+    "title": "Ajustes generales",
+    "backupAndRestore": "Copia de seguridad y restauración",
+    "backupAndRestoreText": "Esta herramienta solo guarda los datos en la memoria local del buscador. En el caso de resetearla se perderán los datos. Si 
+    This tool only saves data in the so - called local storage of the browser.If you reset it,
+    all your data will be gone.Si no quieres perder los datos,
+    puedes descargarlos o restaurarlos aquí.
+    ",
+    "downloadData": "Guardar datos en disco",
+    "restoreData": "Restaurar datos",
+    "randomize": "Ajustar el aleatorizador",
+    "randomizeText": "El generador aleatorio para el plan semanal funciona mejor si se asignan etiquetas individuales a los días. El generador aleatorio sólo selecciona menús con etiquetas que también están permitidas en las comidas correspondientes. Por defecto, todas las etiquetas están permitidas en todos los días, las horas del día se establecen en consecuencia.",
+    "randomizeHint": "Agrega etiquetas al plan semanal mediante drag & drop."
+  },
+  "meals": {
+    "title": "Crear, editar y eliminar menús",
+    "introduction": "Aquí puede añadir nuevos menús, editar los existentes o eliminar los innecesarios. Un menú consta de un título, opcionalmente un enlace a una receta y/o algunas notas, una lista de ingredientes y etiquetas.",
+    "edit": {
+      "new": "Agregar menú",
+      "modalTitle": "Editar menu",
+      "delete": "Elimniar menu",
+      "title": "Nombre del menú",
+      "url": "Link de la receta",
+      "notes": "Notas (número de página del recetario, por ejemplo)",
+      "tags": "Agregar o eliminar etiquetas",
+      "tagsHint": "Agregar o eliminar mediante drag & drop",
+      "assignedTags": "Etiquetas asignadas",
+      "allTags": "Todas las etiquetas",
+      "ingredients": "Ingredientes",
+      "changeAmount": "Cambiar la cantidad",
+      "removeIngredient": "Elimniar ingrediente",
+      "changeIngredient": "Cambiar ingrediente",
+      "addIngredient": "Agregar ingrediente",
+      "save": "Guardar menú"
+    }
+  },
+  "ingredients": {
+    "title": "Crear, editar y eliminar ingredientes",
+    "introduction": "Aquí puede añadir nuevos ingredientes, editar los existentes o eliminar los innecesarios. Los ingredientes constan de un nombre y unidad en la que se miden.",
+    "edit": {
+      "new": "Agregar un nuevo ingrediente",
+      "modalTitle": "Editar ingrediente",
+      "delete": "Eliminar ingrediente y sus apariciones en otras recetas.",
+      "name": "Nombre",
+      "unit": "Unidad",
+      "category": "Categoría",
+      "save": "Guardar ingrediente"
+    }
+  },
+  "tags": {
+    "title": "Crear, editar y eliminar etiquetas",
+    "introduction": "Aquí puedes añadir nuevas etiquetas, editar las existentes o eliminar las innecesarias. Una etiqueta consta de un nombre, un color y un Emoji como icono.",
+    "edit": {
+      "new": "Agregar etiqueta",
+      "modalTitle": "Editar etiqueta",
+      "delete": "Eliminar etiqueta y sus apariciones",
+      "name": "Nombre",
+      "color": "Color",
+      "icon": "Emoji",
+      "save": "Guardar etiqueta"
+    }
+  },
+  "about": {
+    "title": "Sobre Yummyplan",
+    "nav": "Sobre Yummyplan / donaciones",
+    "text": "Yummyplan ha sido desarrollado con Nuxt, Tailwind y Fontawesome y está alojado en Github. Está publicado bajo la licencia MIT. Si se encuentran errores o bugs, o si se quiere desarrollar una nueva característica, se puede crear un pull request.",
+    "donate": {
+      "title": "Donaciones",
+      "text": "Esta herramienta es gratuita y de código abierto. La he creado para que la planificación de menús para toda una semana sea más fácil y accesible. La planificación de menús te ayuda a comprar con menos frecuencia y a reducir el desperdicio de alimentos, que es algo que todos deberíamos al menos intentar. Hoy más que nunca. Si esta herramienta te ha ayudado y te ha ahorrado tiempo, invítame un café en buymeacoffee:",
+      "paypaltext": "O donar a través de Paypal"
+    }
+  },
+  "emoji": {
+    "frequentlyused": "Usado con frecuencia",
+    "people": "Gente",
+    "nature": "Naturaleza",
+    "objects": "Objetos",
+    "places": "Sitios",
+    "symbols": "Símbolos",
+    "open": "Seleciona un emoji"
+  },
+  "categories": {
+    "fruits": "Frutas",
+    "vegetables": "Vegetales",
+    "cannedFood": "Comida enlatada",
+    "frozenGoods": "Comida congelada,
+    "meat": "Carne",
+    "fish": "Pescado",
+    "deli": "Deli",
+    "dairyAndEggs": "Productos lácteos y huevos",
+    "condimentsAndSpices": "Condimentos y especias",
+    "saucesAndOil": "Salsas y aceite",
+    "snacks": "Aperitivos",
+    "breadAndBakery": "Pan y bollería",
+    "beverages": "Bebidas",
+    "pastaAndRice": "Pasta y arroz",
+    "cereal": "Cereal",
+    "bakingSupplies": "Materiales de repostería",
+    "uncategorized": "Sin categoría"
+  }
+}
