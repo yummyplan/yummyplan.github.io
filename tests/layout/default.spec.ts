@@ -2,7 +2,7 @@ import { shallowMount } from '@vue/test-utils'
 import { spy } from 'sinon'
 import Vuex, { Store } from 'vuex'
 import DefaultLayout from '~/layouts/default.vue'
-import { createLocalVue } from '~/node_modules/@vue/test-utils'
+import { createLocalVue, Wrapper } from '~/node_modules/@vue/test-utils'
 import HelloModal from '~/components/Modal/HelloModal.vue'
 import { SerializableMealplanSettings } from '~/model/store/SerializableMealplanSettings'
 import { Mealplan } from '~/model/store/Mealplan'
@@ -48,6 +48,11 @@ describe('layout/default.vue', () => {
     shallowMount(DefaultLayout, {
       store,
       localVue,
+      mocks: {
+        $nuxt: {
+          $on: spy()
+        }
+      },
       stubs: {
         nuxt: {
           template: '<div />'
@@ -71,6 +76,11 @@ describe('layout/default.vue', () => {
     const wrapper = shallowMount(DefaultLayout, {
       store,
       localVue,
+      mocks: {
+        $nuxt: {
+          $on: spy()
+        }
+      },
       stubs: {
         nuxt: {
           template: '<div />'
@@ -101,6 +111,12 @@ describe('layout/default.vue', () => {
     const wrapper = shallowMount(DefaultLayout, {
       store,
       localVue,
+      mocks: {
+        $nuxt: {
+          $on: spy()
+        },
+        $router: routerData
+      },
       stubs: {
         nuxt: {
           template: '<div />'
@@ -112,9 +128,6 @@ describe('layout/default.vue', () => {
             hide: hideFn
           }
         }
-      },
-      mocks: {
-        $router: routerData
       }
     })
 
@@ -134,6 +147,11 @@ describe('layout/default.vue', () => {
     const wrapper = shallowMount(DefaultLayout, {
       store,
       localVue,
+      mocks: {
+        $nuxt: {
+          $on: spy()
+        }
+      },
       stubs: {
         nuxt: {
           template: '<div />'
@@ -188,6 +206,11 @@ describe('layout/default.vue', () => {
     shallowMount(DefaultLayout, {
       store,
       localVue,
+      mocks: {
+        $nuxt: {
+          $on: spy()
+        }
+      },
       stubs: {
         nuxt: {
           template: '<div />'
@@ -228,5 +251,166 @@ describe('layout/default.vue', () => {
 
     expect(showFn).not.toBeCalled()
     expect(mutationSpy).toHaveBeenLastCalledWith({}, expectedMealPlan)
+  })
+
+  test('Sets font correctly to nanum as default', () => {
+    const onSpy = spy()
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const wrapper: Wrapper<DefaultLayout & { [key: string]: any }> = shallowMount(DefaultLayout, {
+      store,
+      localVue,
+      mocks: {
+        $nuxt: {
+          $on: onSpy
+        }
+      },
+      stubs: {
+        nuxt: {
+          template: '<div />'
+        },
+        HelloModal: {
+          template: '<div></div>',
+          methods: {
+            show: showFn,
+            hide: hideFn
+          }
+        }
+      }
+    })
+
+    expect(localStorage.getItem).toHaveBeenCalledWith('font')
+    expect(wrapper.vm.chosenFont).toEqual('nanum')
+    expect(onSpy).toHaveBeenCalled()
+  })
+
+  test('Reads nanum from set font in localStorage', () => {
+    const onSpy = spy()
+
+    localStorage.setItem('font', 'nanum')
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    localStorage.setItem.mockClear()
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const wrapper: Wrapper<DefaultLayout & { [key: string]: any }> = shallowMount(DefaultLayout, {
+      store,
+      localVue,
+      mocks: {
+        $nuxt: {
+          $on: onSpy
+        }
+      },
+      stubs: {
+        nuxt: {
+          template: '<div />'
+        },
+        HelloModal: {
+          template: '<div></div>',
+          methods: {
+            show: showFn,
+            hide: hideFn
+          }
+        }
+      }
+    })
+
+    expect(localStorage.getItem).toHaveBeenCalledWith('font')
+    expect(wrapper.vm.chosenFont).toEqual('nanum')
+    expect(onSpy).toHaveBeenCalled()
+  })
+
+  test('Reads opendyslexic from set font in localStorage', () => {
+    const onSpy = spy()
+
+    localStorage.setItem('font', 'opendyslexic')
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    localStorage.setItem.mockClear()
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const wrapper: Wrapper<DefaultLayout & { [key: string]: any }> = shallowMount(DefaultLayout, {
+      store,
+      localVue,
+      mocks: {
+        $nuxt: {
+          $on: onSpy
+        }
+      },
+      stubs: {
+        nuxt: {
+          template: '<div />'
+        },
+        HelloModal: {
+          template: '<div></div>',
+          methods: {
+            show: showFn,
+            hide: hideFn
+          }
+        }
+      }
+    })
+
+    expect(localStorage.getItem).toHaveBeenCalledWith('font')
+    expect(wrapper.vm.chosenFont).toEqual('opendyslexic')
+    expect(onSpy).toHaveBeenCalled()
+  })
+
+  test('Sets font from event', () => {
+    const onSpy = spy()
+
+    localStorage.setItem('font', 'opendyslexic')
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    localStorage.setItem.mockClear()
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
+    let onCallback: ((font: string) => void) | null = null
+
+    const wrapper: Wrapper<DefaultLayout & { [key: string]: any }> = shallowMount(DefaultLayout, {
+      store,
+      localVue,
+      mocks: {
+        $nuxt: {
+          $on: (event: string, callback: (font: string) => void): void => {
+            expect(event).toEqual('setFont')
+            onCallback = callback
+          }
+        }
+      },
+      stubs: {
+        nuxt: {
+          template: '<div />'
+        },
+        HelloModal: {
+          template: '<div></div>',
+          methods: {
+            show: showFn,
+            hide: hideFn
+          }
+        }
+      }
+    })
+
+    expect(localStorage.getItem).toHaveBeenCalledWith('font')
+    expect(wrapper.vm.chosenFont).toEqual('opendyslexic')
+    expect(onCallback).not.toBeNull()
+
+    if (onCallback !== null) {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      onCallback('nanum')
+    }
+
+    expect(wrapper.vm.chosenFont).toEqual('nanum')
+
+    if (onCallback !== null) {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      onCallback('opendyslexic')
+    }
+
+    expect(wrapper.vm.chosenFont).toEqual('opendyslexic')
   })
 })

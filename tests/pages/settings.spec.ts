@@ -326,4 +326,31 @@ describe('pages/settings.vue', () => {
     expect(localStorage.setItem).toHaveBeenCalledWith('cookiesAccepted', 'yes')
     expect(wrapper.vm.hasAcceptedCookies).toBeTruthy()
   })
+
+  test('Sets font in localStorage and emits the change', () => {
+    const i18nCollector = new I18nCollector()
+
+    const emitSpy = spy()
+
+    const wrapper: Wrapper<Settings & { [key: string]: any }> = shallowMount(Settings, {
+      store,
+      localVue,
+      mocks: {
+        $t: (key: string): string => i18nCollector.tMock(key),
+        $nuxt: {
+          $emit: emitSpy
+        }
+      }
+    })
+
+    wrapper.vm.setFont('opendyslexic')
+
+    expect(localStorage.setItem).toHaveBeenLastCalledWith('font', 'opendyslexic')
+    expect(emitSpy).toHaveBeenCalledWith('setFont', 'opendyslexic')
+
+    wrapper.vm.setFont('nanum')
+
+    expect(localStorage.setItem).toHaveBeenLastCalledWith('font', 'nanum')
+    expect(emitSpy).toHaveBeenCalledWith('setFont', 'nanum')
+  })
 })

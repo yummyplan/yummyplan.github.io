@@ -8,7 +8,7 @@ module.exports = {
     fontFamily: {
       sans: 'var(--display-font)',
       nanum: "'Nanum Gothic', sans-serif;",
-      opendyslexic: "'opendyslexic';"
+      opendyslexic: "'opendyslexic', sans-serif;"
     },
     filter: { // defaults to {}
       none: 'none',
