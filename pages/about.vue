@@ -8,6 +8,13 @@
       {{ $t('about.text') }}
     </p>
 
+    <a href="https://github.com/yummyplan/yummyplan.github.io" class="mb-4">
+      <f-button>
+        <font-awesome-icon :icon="['fab', 'github']" class="mr-4" />
+        github.com/yummyplan/yummyplan.github.io
+      </f-button>
+    </a>
+
     <h2 class="text-2xl mb-4">
       {{ $t('about.donate.title') }}
     </h2>

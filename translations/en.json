@@ -52,7 +52,13 @@
     "dangerZoneText": "Here you can give or revoke your consent to the storage of data in your browser. If you agree, all menus, ingredients, tags, settings etc. will be saved in your browser. You will not be tracked. Attention: If you revoke your consent, all data will be deleted!",
     "deleteAllData": "Delete all data",
     "revokeCookies": "Revoke consent",
-    "acceptCookies": "Give consent"
+    "acceptCookies": "Give consent",
+    "font": {
+      "title": "Font",
+      "text": "Yummyplan offers two different fonts: Nanum and OpenDyslexic. Click on the button with the corresponding font to change it. The selected font will be saved in your browser. You can see a preview of the fonts in the buttons.",
+      "nanum": "Select font \"Nanum\"",
+      "opendyslexic": "Select font \"OpenDyslexic\""
+    }
   },
   "meals": {
     "title": "Create, edit and delete menus",
@@ -105,7 +111,7 @@
   "about": {
     "title": "About Yummyplan",
     "nav": "About Yummyplan / donate",
-    "text": "Yummyplan was built with Nuxt, Tailwind and Fontawesome and is hosted on Github. It is published under the MIT licence. If errors or bugs are found, or if you want to develop a new feature, you can create a pull request.",
+    "text": "Yummyplan was built with Nuxt, Tailwind and Fontawesome and is hosted on Github. It is published under the MIT licence. If errors or bugs are found, or if you want to develop a new feature, you can create a pull request:",
     "donate": {
       "title": "Donate",
       "text": "This tool is free and open source. I built it to make menu planning for a whole week easier and more accessible. Menu planning helps you shop less often and reduce food waste, which is something we should all at least try. Nowadays more than ever. If this tool has helped you and saved you time, buy me a coffee on buymeacoffee:",

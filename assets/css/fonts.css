@@ -24,3 +24,16 @@
   url('../fonts/nanum-gothic-v17-latin-700.ttf') format('truetype'), /* Safari, Android, iOS */
   url('../fonts/nanum-gothic-v17-latin-700.svg#NanumGothic') format('svg'); /* Legacy iOS */
 }
+
+@font-face {
+  font-family: 'opendyslexic';
+  src: url('../fonts/OpenDyslexic3-Regular.ttf');
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family: 'opendyslexic';
+  src: url('../fonts/OpenDyslexic3-Bold.ttf');
+  font-weight: 700;
+  font-style: normal;
+}

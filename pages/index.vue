@@ -1,51 +1,53 @@
 <template>
   <div class="flex flex-wrap font-sans">
-    <weekplan-table id="weekplan" class="w-full md:w-2/3 font-sans" :show-current-day="!downloading">
-      <template #corner>
-        <button v-if="!downloading" class="cursor-pointer" @click="deleteWeek()">
-          <font-awesome-icon :icon="['fas', 'trash']" />
-          <font-awesome-icon :icon="['fas', 'expand-arrows-alt']" />
-        </button>
-      </template>
-
-      <template v-for="dayTime in dayTimes" #[dayTime]>
-        <div v-if="!downloading" :key="dayTime" class="text-center">
-          <button class="cursor-pointer" @click="deleteDayTime(dayTime)">
+    <div id="weekplan-container" class="shadow-md w-full md:w-2/3">
+      <weekplan-table id="weekplan" class="font-sans w-full" :show-current-day="!downloading">
+        <template #corner>
+          <button class="cursor-pointer" data-html2canvas-ignore @click="deleteWeek()">
             <font-awesome-icon :icon="['fas', 'trash']" />
-            <font-awesome-icon :icon="['fas', 'arrow-down']" />
+            <font-awesome-icon :icon="['fas', 'expand-arrows-alt']" />
           </button>
-        </div>
-      </template>
+        </template>
 
-      <template v-for="day in days" #[day]>
-        <span v-if="!downloading" :key="day" class="block text-center">
-          <button class="cursor-pointer" @click="deleteDay(day)">
-            <font-awesome-icon :icon="['fas', 'trash']" />
-            <font-awesome-icon :icon="['fas', 'arrow-right']" />
-          </button>
-        </span>
-      </template>
+        <template v-for="dayTime in dayTimes" #[dayTime]>
+          <div :key="dayTime" class="text-center" data-html2canvas-ignore>
+            <button class="cursor-pointer" @click="deleteDayTime(dayTime)">
+              <font-awesome-icon :icon="['fas', 'trash']" />
+              <font-awesome-icon :icon="['fas', 'arrow-down']" />
+            </button>
+          </div>
+        </template>
 
-      <template v-for="key in dayTimeKeys" #[key]="{ dayKey, timeKey }">
-        <div :key="key">
-          <draggable
-            :key="key"
-            v-model="mealPlan[dayKey][timeKey]"
-            :group="{ name: key, put: mealPlan[dayKey][timeKey].length === 0 }"
-            :sort="false"
-            :animation="120"
-            ghost-class="ghost"
-            @click.native="showDetailModal(mealPlan[dayKey][timeKey][0])"
-          >
-            <meal-card
-              v-if="mealPlan[dayKey][timeKey].length > 0"
-              class="m-2 inline-block font-sans"
-              :meal="mealPlan[dayKey][timeKey][0]"
-            />
-          </draggable>
-        </div>
-      </template>
-    </weekplan-table>
+        <template v-for="day in days" #[day]>
+          <span :key="day" class="block text-center" data-html2canvas-ignore>
+            <button class="cursor-pointer" @click="deleteDay(day)">
+              <font-awesome-icon :icon="['fas', 'trash']" />
+              <font-awesome-icon :icon="['fas', 'arrow-right']" />
+            </button>
+          </span>
+        </template>
+
+        <template v-for="key in dayTimeKeys" #[key]="{ dayKey, timeKey }">
+          <div :key="key">
+            <draggable
+              :key="key"
+              v-model="mealPlan[dayKey][timeKey]"
+              :group="{ name: key, put: mealPlan[dayKey][timeKey].length === 0 }"
+              :sort="false"
+              :animation="120"
+              ghost-class="ghost"
+              @click.native="showDetailModal(mealPlan[dayKey][timeKey][0])"
+            >
+              <meal-card
+                v-if="mealPlan[dayKey][timeKey].length > 0"
+                class="m-2 inline-block font-sans"
+                :meal="mealPlan[dayKey][timeKey][0]"
+              />
+            </draggable>
+          </div>
+        </template>
+      </weekplan-table>
+    </div>
 
     <div class="w-full md:w-1/3 md:px-6 md:pr-0">
       <searchable-meal-list v-slot="{ items: meals }" class="flex flex-col h-full mt-4 md:mt-0" :items="$store.state.meals">
@@ -414,7 +416,9 @@ export default class Index extends Mixins(DownloadMixin) {
    * Downloads the week plan as PNG
    */
   async downloadWeekplanAsPng (): Promise<void> /* istanbul ignore next */ {
+    this.downloading = true
     const { img } = await this.createPng('#weekplan')
+    this.downloading = false
 
     const download = document.createElement('a')
     download.href = img as string

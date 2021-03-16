@@ -1,5 +1,5 @@
 <template>
-  <table class="bg-white shadow-md border-white border-8 select-none">
+  <table class="bg-white border-white border-8 select-none">
     <thead>
       <tr class="border-b-2 border-gray-400">
         <th class="w-1/7">
@@ -7,14 +7,14 @@
         </th>
         <th v-for="(dayTime, key) in dayTimes" :key="key" class="w-2/7 border-l-2 border-gray-400 p-4">
           <!-- eslint-disable-next-line vue/no-v-html -->
-          <span v-html="$t(`daytimes.${dayTime}`)" />
+          <span class="font-sans" v-html="$t(`daytimes.${dayTime}`)" />
           <slot :name="dayTime" />
         </th>
       </tr>
     </thead>
     <tbody>
       <tr v-for="dayKey in days" :key="dayKey" class="border-b-2 border-gray-400" :class="{ 'bg-green-100': dayKey === currentWeekday && showCurrentDay }">
-        <td class="text-center font-bold py-8">
+        <td class="text-center font-bold py-8 font-sans">
           {{ $t(`weekdays.${dayKey}`) }}
           <slot :name="dayKey" :dayKey="dayKey" />
         </td>

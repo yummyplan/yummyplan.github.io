@@ -37,21 +37,23 @@
     </p>
 
     <div class="flex flex-wrap mb-4">
-      <weekplan-table class="w-full md:w-2/3">
-        <template v-for="key in dayTimeKeys" #[key]="{ dayKey, timeKey }">
-          <draggable
-            :key="key"
-            v-model="allowedTagsInRandom[dayKey][timeKey]"
-            :group="{ name: key, put: true }"
-            ghost-class="ghost"
-            :sort="true"
-            :animation="120"
-            class="pt-2 pl-2"
-          >
-            <tag-pill v-for="tag in allowedTagsInRandom[dayKey][timeKey]" :key="tag.name" :tag="tag" :show-name="true" class="mr-2 mb-2" />
-          </draggable>
-        </template>
-      </weekplan-table>
+      <div class="w-full md:w-2/3 shadow-md">
+        <weekplan-table class="w-full">
+          <template v-for="key in dayTimeKeys" #[key]="{ dayKey, timeKey }">
+            <draggable
+              :key="key"
+              v-model="allowedTagsInRandom[dayKey][timeKey]"
+              :group="{ name: key, put: true }"
+              ghost-class="ghost"
+              :sort="true"
+              :animation="120"
+              class="pt-2 pl-2"
+            >
+              <tag-pill v-for="tag in allowedTagsInRandom[dayKey][timeKey]" :key="tag.name" :tag="tag" :show-name="true" class="mr-2 mb-2" />
+            </draggable>
+          </template>
+        </weekplan-table>
+      </div>
 
       <div class="w-full md:w-1/3 px-4">
         <p class="mb-4">
@@ -67,6 +69,24 @@
           </transition-group>
         </draggable>
       </div>
+    </div>
+
+    <h2 class="text-2xl mb-4">
+      {{ $t('settings.font.title') }}
+    </h2>
+
+    <p class="mb-4">
+      {{ $t('settings.font.text') }}
+    </p>
+
+    <div class="flex flex-wrap">
+      <f-button class="mr-4 mb-4 font-nanum" @click="setFont('nanum')">
+        {{ $t('settings.font.nanum') }}
+      </f-button>
+
+      <f-button class="mr-4 mb-4 font-opendyslexic" @click="setFont('opendyslexic')">
+        {{ $t('settings.font.opendyslexic') }}
+      </f-button>
     </div>
 
     <h2 class="text-2xl mb-4">
@@ -247,6 +267,16 @@ export default class Settings extends Vue {
     localStorage.setItem('cookiesAccepted', 'no')
     this.hasAcceptedCookies = false
     this.deleteAllData()
+  }
+
+  /**
+   * Sets the desired font
+   * @param font
+   */
+  setFont (font: string): void {
+    localStorage.setItem('font', font)
+
+    this.$nuxt.$emit('setFont', font)
   }
 }
 </script>

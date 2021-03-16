@@ -1,6 +1,6 @@
 <template>
   <div class="px-3 py-1 rounded-full inline-block" :style="style">
-    <span class="tag-icon">
+    <span class="tag-icon font-nanum">
       {{ tag.icon }}
     </span>
     <template v-if="showName">

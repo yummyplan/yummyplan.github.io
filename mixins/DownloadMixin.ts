@@ -20,22 +20,35 @@ export default class DownloadMixin extends Vue {
       throw new Error('Either not in browser or HTML not present.')
     }
 
+    const body = document.querySelector('body')
+    if (body) {
+      body.classList.add('html2canvas')
+    }
+
     const options = {
       background: 'white',
-      allowTaint: true,
-      useCORS: true,
-      foreignObjectRendering: true,
-      x: 0,
-      y: 0,
+      allowTaint: false,
+      useCORS: false,
+      foreignObjectRendering: false,
+      x: 890,
+      y: 80,
       scrollX: 0,
-      scrollY: 0
+      scrollY: 0,
+      width: 900,
+      windowWidth: 3000,
+      removeContainer: false,
+      // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+      onclone: (): void => {
+        if (body) {
+          body.classList.remove('html2canvas')
+        }
+      }
     }
 
     return this.$nextTick().then(() => {
       return html2canvas(html as HTMLElement, options)
     }).then((canvas) => {
-      const imageWidth = html.clientWidth
-      const imageHeight = html.clientHeight
+      const imageHeight = canvas.height
 
       this.downloading = false
       const ctx = canvas.getContext('2d')
@@ -47,7 +60,7 @@ export default class DownloadMixin extends Vue {
 
       return {
         img,
-        imageWidth,
+        imageWidth: 900,
         imageHeight
       }
     })
@@ -55,6 +68,8 @@ export default class DownloadMixin extends Vue {
 
   /**
    * Downloads the week plan as PDF
+   * @param selector
+   * @param name
    */
   async downloadSelectorAsPdf (selector: string, name: string): Promise<void> {
     this.downloading = true
@@ -91,9 +106,22 @@ export default class DownloadMixin extends Vue {
     }
   }
 
+  /**
+   * Downloads the categorized grocery list as PDF
+   * @param items
+   */
   downloadCatgeorizedGroceryItemsAsPdf (items: { [key in IngredientCategory]: GroceryListItem[] }): void {
+    const usedFont = localStorage.getItem('font')
+
     // eslint-disable-next-line new-cap
     const doc = new jsPDF('p', 'mm', 'a4', 1)
+    if (usedFont === 'opendyslexic') {
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
+      const fontAdder = require('~/assets/fonts/opendyslexic.js').default
+      fontAdder(doc)
+      doc.setFont('display')
+    }
+
     const fontSize = 9
     let isSecondColumn = false
     let curX = 20

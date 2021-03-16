@@ -1,11 +1,9 @@
 <template>
-  <div class="bg-gray-100 min-h-screen">
-    <div class="container mx-auto px-4">
-      <header-navigation class="mb-6" />
+  <div class="bg-gray-100 min-h-screen flex flex-col min-w-screen" :style="`--display-font: '${chosenFont}'`">
+    <header-navigation class="mb-6 font-sans flex-0" />
 
-      <nuxt />
-
-      <footer-navigation class="mt-12" />
+    <div class="container mx-auto px-4 flex-1">
+      <nuxt class="font-sans" />
 
       <hello-modal
         ref="helloModal"
@@ -13,11 +11,13 @@
         @declineCookies="e => declineCookies(e)"
       />
     </div>
+
+    <footer-navigation class="mt-12 px-6 font-sans flex-0" />
   </div>
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator'
+import { Vue, Component, Provide } from 'vue-property-decorator'
 import { deserialize } from 'typescript-json-serializer'
 import HeaderNavigation from '~/components/Frame/HeaderNavigation.vue'
 import FooterNavigation from '~/components/Frame/FooterNavigation.vue'
@@ -36,6 +36,8 @@ export default class DefaultLayout extends Vue {
     helloModal: FModalInterface
   }
 
+  @Provide() chosenFont = 'nanum'
+
   mounted (): void {
     const data = localStorage.getItem('state')
 
@@ -46,6 +48,17 @@ export default class DefaultLayout extends Vue {
     } else {
       this.$refs.helloModal.show()
     }
+
+    const usedFont = localStorage.getItem('font')
+    if (usedFont === 'opendyslexic') {
+      this.chosenFont = 'opendyslexic'
+    } else {
+      this.chosenFont = 'nanum'
+    }
+
+    this.$nuxt.$on('setFont', (font: string) => {
+      this.chosenFont = font
+    })
 
     this.$forceUpdate()
   }

@@ -47,7 +47,18 @@
     "restoreData": "Restaurar datos",
     "randomize": "Ajustar el aleatorizador",
     "randomizeText": "El generador aleatorio para el plan semanal funciona mejor si se asignan etiquetas individuales a los días. El generador aleatorio sólo selecciona menús con etiquetas que también están permitidas en las comidas correspondientes. Por defecto, todas las etiquetas están permitidas en todos los días, las horas del día se establecen en consecuencia.",
-    "randomizeHint": "Agrega etiquetas al plan semanal mediante drag & drop."
+    "randomizeHint": "Agrega etiquetas al plan semanal mediante drag & drop.",
+    "dangerZone": "Zona de peligro",
+    "dangerZoneText": "Aquí puede dar o revocar su consentimiento para el almacenamiento de datos en su navegador. Si está de acuerdo, todos los menús, ingredientes, etiquetas, ajustes, etc. se guardarán en su navegador. No se hará un seguimiento de usted. Atención: Si revoca su consentimiento, se eliminarán todos los datos.",
+    "deleteAllData": "Borrar todos los datos",
+    "revokeCookies": "Revocar el consentimiento",
+    "acceptCookies": "Dar el consentimiento",
+    "font": {
+      "title": "Fuente",
+      "text": "Yummyplan ofrece dos tipos de letra diferentes: Nanum y OpenDyslexic. Haga clic en el botón con la fuente correspondiente para cambiarla. La fuente seleccionada se guardará en su navegador. Puede ver una vista previa de las fuentes en los botones.",
+      "nanum": "Elija la fuente \"Nanum\"",
+      "opendyslexic": "Elija la fuente \"OpenDyslexic\""
+    }
   },
   "meals": {
     "title": "Crear, editar y eliminar menús",
@@ -100,7 +111,7 @@
   "about": {
     "title": "Sobre Yummyplan",
     "nav": "Sobre Yummyplan / donaciones",
-    "text": "Yummyplan ha sido desarrollado con Nuxt, Tailwind y Fontawesome y está alojado en Github. Está publicado bajo la licencia MIT. Si se encuentran errores o bugs, o si se quiere desarrollar una nueva característica, se puede crear un pull request.",
+    "text": "Yummyplan ha sido desarrollado con Nuxt, Tailwind y Fontawesome y está alojado en Github. Está publicado bajo la licencia MIT. Si se encuentran errores o bugs, o si se quiere desarrollar una nueva característica, se puede crear un pull request:",
     "donate": {
       "title": "Donaciones",
       "text": "Esta herramienta es gratuita y de código abierto. La he creado para que la planificación de menús para toda una semana sea más fácil y accesible. La planificación de menús te ayuda a comprar con menos frecuencia y a reducir el desperdicio de alimentos, que es algo que todos deberíamos al menos intentar. Hoy más que nunca. Si esta herramienta te ha ayudado y te ha ahorrado tiempo, invítame un café en buymeacoffee:",

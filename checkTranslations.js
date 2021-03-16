@@ -8,14 +8,14 @@ const compare = (a, b, keySoFar, nameOfB) => {
   Object.keys(a).forEach((key) => {
     const newKey = keySoFar.length > 0 ? keySoFar + '.' + key : key
 
-    if (typeof b[key] === 'object' && b[key] !== null) {
+    if (typeof b[key] === 'object' && b[key] !== undefined) {
       compare(a[key], b[key], newKey, nameOfB)
     } else if (typeof a[key] === 'string') {
       if (!result[newKey]) {
         result[newKey] = {}
       }
 
-      if (b[key] === null) {
+      if (b[key] === undefined) {
         result[newKey][nameOfB] = 'Missing'
       } else if (a[key] === b[key]) {
         result[newKey][nameOfB] = 'Untranslated'

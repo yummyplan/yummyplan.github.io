@@ -6,7 +6,9 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
-      sans: "'Nanum Gothic', sans-serif;"
+      sans: 'var(--display-font)',
+      nanum: "'Nanum Gothic', sans-serif;",
+      opendyslexic: "'opendyslexic';"
     },
     filter: { // defaults to {}
       none: 'none',

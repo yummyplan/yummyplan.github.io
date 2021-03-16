@@ -52,7 +52,13 @@
     "dangerZoneText": "Hier kannst du deine Zustimmung zur Speicherung von Daten in deinem Browser erteilen oder widerrufen. Wenn du zustimmst, werden alle Menüs, Zutaten, Tags, Einstellungen etc., in deinem Browser gespeichert. Du wirst nicht getrackt. Achtung: Bei einem Widerruf werden alle Daten gelöscht!",
     "deleteAllData": "Alle Daten löschen",
     "revokeCookies": "Zustimmung widerrufen",
-    "acceptCookies": "Zustimmung erteilen"
+    "acceptCookies": "Zustimmung erteilen",
+    "font": {
+      "title": "Schriftart",
+      "text": "Yummyplan bietet zwei verschiedene Schriftarten an: Nanum und OpenDyslexic. Klicke auf den Button mit der entsprechenden Schriftart, um sie zu wechseln. Die gewählte Schriftart wird in deinem Browser gespeichert. Eine Vorschau der Schriftarten siehst du in den Buttons.",
+      "nanum": "Schriftart \"Nanum\" wählen",
+      "opendyslexic": "Schriftart \"OpenDyslexic\" wählen"
+    }
   },
   "meals": {
     "title": "Menüs erstellen, bearbeiten und löschen",
@@ -105,7 +111,7 @@
   "about": {
     "title": "Über Yummyplan",
     "nav": "Über Yummyplan / Spenden",
-    "text": "Yummyplan wurde mit Nuxt, Tailwind und Fontawesome gebaut und wird auf Github gehostet. Er ist unter der MIT-Lizenz veröffentlicht. Falls Fehler oder Bugs gefunden werden, oder man ein neues Feature entwickeln möchte, kann man einen Pull Request erstellen.",
+    "text": "Yummyplan wurde mit Nuxt, Tailwind und Fontawesome gebaut und wird auf Github gehostet. Er ist unter der MIT-Lizenz veröffentlicht. Falls Fehler oder Bugs gefunden werden, oder man ein neues Feature entwickeln möchte, kann man einen Pull Request erstellen:",
     "donate": {
       "title": "Spenden",
       "text": "Dieses Tool ist gratis und quelloffen. Ich habe es gebaut, um eine Menüplanung für eine ganze Woche einfacher und zugänglicher zu machen. Eine Menüplanung hilft dabei weniger oft einkaufen gehen zu müssen und Food Waste zu reduzieren, was wir alle zumindest probieren sollten. Heutzutage mehr als je zuvor. Wenn dieses Tool dir geholfen hat und du Zeit gespart hast, kaufe mir doch einen Kafee auf buymeacoffee:",

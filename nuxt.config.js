@@ -20,7 +20,7 @@ export default {
       },
       {
         'http-equiv': 'Content-Security-Policy',
-        content: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; worker-src 'self'"
+        content: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; worker-src 'self'; img-src 'self' data:"
       },
       { hid: 'og:image', property: 'og:image', content: '/logo_text.png' }
     ],
@@ -31,7 +31,8 @@ export default {
 
   css: [
     { src: '@node_modules/@fortawesome/fontawesome', lang: 'css' },
-    { src: 'assets/css/fonts.css', lang: 'css' }
+    { src: 'assets/css/fonts.css', lang: 'css' },
+    { src: 'assets/css/html2canvas.css', lang: 'css' }
   ],
 
   plugins: [
