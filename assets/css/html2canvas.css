@@ -4,9 +4,9 @@
 .html2canvas #weekplan-container {
   overflow-x: hidden;
 }
-.html2canvas .shadow-md {
+.html2canvas #weekplan-container .shadow {
   box-shadow: none !important;
 }
-.html2canvas .bg-yellow-300 {
+.html2canvas #weekplan-container .bg-yellow-300 {
   background: transparent !important;
 }

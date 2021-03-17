@@ -114,6 +114,7 @@ export default {
   },
 
   build: {
+    extractCSS: true,
     plugins: [
       new IgnoreNotFoundExportPlugin()
     ]

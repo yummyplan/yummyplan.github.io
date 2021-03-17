@@ -1,5 +1,5 @@
 <template>
-  <div class="p-3 bg-yellow-300 shadow-md">
+  <div class="p-3 bg-yellow-300 shadow">
     <p class="break-words">
       {{ hyphenatedTitle }}
     </p>

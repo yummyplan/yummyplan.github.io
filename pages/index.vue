@@ -51,7 +51,7 @@
 
     <div class="w-full md:w-1/3 md:px-6 md:pr-0">
       <searchable-meal-list v-slot="{ items: meals }" class="flex flex-col h-full mt-4 md:mt-0" :items="$store.state.meals">
-        <div class="mb-4 flex-1 md:overflow-y-auto order-3 md:order-2" style="flex-basis: 1px;">
+        <div class="mb-4 flex-1 md:overflow-y-auto order-3 md:order-2 pl-0.5" style="flex-basis: 1px;">
           <draggable
             :list="meals"
             :group="{ name: 'tag', pull: 'clone', put: true }"
