@@ -332,6 +332,7 @@ describe('pages/settings.vue', () => {
 
     const emitSpy = spy()
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const wrapper: Wrapper<Settings & { [key: string]: any }> = shallowMount(Settings, {
       store,
       localVue,

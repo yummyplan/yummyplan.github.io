@@ -357,8 +357,6 @@ describe('layout/default.vue', () => {
   })
 
   test('Sets font from event', () => {
-    const onSpy = spy()
-
     localStorage.setItem('font', 'opendyslexic')
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
@@ -368,6 +366,7 @@ describe('layout/default.vue', () => {
 
     let onCallback: ((font: string) => void) | null = null
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const wrapper: Wrapper<DefaultLayout & { [key: string]: any }> = shallowMount(DefaultLayout, {
       store,
       localVue,
