@@ -53,10 +53,11 @@
       <searchable-meal-list v-slot="{ items: meals }" class="flex flex-col h-full mt-4 md:mt-0" :items="$store.state.meals">
         <div class="mb-4 flex-1 md:overflow-y-auto order-3 md:order-2 pl-0.5" style="flex-basis: 1px;">
           <draggable
+            ref="draggableMealList"
             :list="meals"
             :group="{ name: 'tag', pull: 'clone', put: true }"
             ghost-class="ghost"
-            @add="() => false"
+            @add="$refs.draggableMealList.$forceUpdate()"
           >
             <transition-group>
               <meal-card v-for="meal in meals" :key="meal.title" :meal="meal" class="mb-2 mr-2 inline-block" />
