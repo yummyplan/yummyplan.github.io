@@ -71,6 +71,12 @@ export default {
   ],
 
   i18n: {
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'lang',
+      alwaysRedirect: true,
+      fallbackLocale: 'en'
+    },
     locales: [{
       code: 'en',
       name: 'EN'
