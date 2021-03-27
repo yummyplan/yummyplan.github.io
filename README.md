@@ -20,7 +20,7 @@ No login or account is required, since everything is saved in your browser.
 
 Some default content is available in both german and english, but own meals and ingredients can be added.
 
-Check it out here: [yummyplan.github.io](https://yummyplan.github.io)
+Check it out here: [yummyplan.app](https://yummyplan.app)
 
 ### Available languages
 

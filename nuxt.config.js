@@ -20,7 +20,7 @@ export default {
       },
       {
         'http-equiv': 'Content-Security-Policy',
-        content: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; font-src 'self' 'unsafe-inline'; worker-src 'self'; img-src 'self' data:"
+        content: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; font-src 'self' 'unsafe-inline' data:; worker-src 'self'; img-src 'self' data:"
       },
       { hid: 'og:image', property: 'og:image', content: '/logo_text.png' }
     ],
@@ -131,5 +131,9 @@ export default {
   pageTransition: {
     name: 'default',
     mode: 'out-in'
+  },
+
+  generate: {
+    routes: ['404', '/de', '/es']
   }
 }
