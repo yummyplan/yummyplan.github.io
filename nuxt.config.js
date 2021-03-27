@@ -32,7 +32,9 @@ export default {
   css: [
     { src: '@node_modules/@fortawesome/fontawesome', lang: 'css' },
     { src: 'assets/css/fonts.css', lang: 'css' },
-    { src: 'assets/css/html2canvas.css', lang: 'css' }
+    { src: 'assets/css/html2canvas.css', lang: 'css' },
+    { src: '@node_modules/vue-search-select/dist/VueSearchSelect.css', lang: 'css' },
+    { src: 'assets/css/vue-search-select.css', lang: 'css' }
   ],
 
   plugins: [

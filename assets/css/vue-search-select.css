@@ -1,0 +1,24 @@
+/* purgecss start ignore */
+.meal-ingredient-editor .ui.search.selection.search-select {
+  @apply border-0;
+  @apply border-b-2;
+  @apply border-black;
+  @apply rounded-none;
+  @apply bg-transparent;
+}
+
+.meal-ingredient-editor .ui.search.selection.search-select.active .menu.visible {
+  @apply border-0;
+}
+
+.meal-ingredient-editor .ui.search.selection.search-select > .dropdown.icon {
+  @apply pt-0;
+}
+
+.meal-ingredient-editor .ui.search.selection.search-select > .dropdown.icon:before {
+  @apply font-nanum;
+  @apply text-2xl;
+  @apply -mt-8;
+  content: '⌄';
+}
+/* purgecss end ignore */

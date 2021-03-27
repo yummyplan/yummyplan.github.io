@@ -37,6 +37,7 @@
     "tailwindcss-filters": "^3.0.0",
     "typescript-json-serializer": "^3.0.0",
     "vue-emoji-picker": "^1.0.1",
+    "vue-search-select": "^2.9.3",
     "vuedraggable": "^2.24.3"
   },
   "devDependencies": {

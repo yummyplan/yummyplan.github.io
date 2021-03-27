@@ -1,5 +1,6 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex'
+import { ModelSelect } from 'vue-search-select'
 import { Store } from '~/node_modules/vuex/types/index.d.ts'
 import { Ingredient } from '~/model/meal/Ingredient'
 import { IngredientCategory } from '~/model/meal/IngredientCategory'
@@ -16,12 +17,12 @@ describe('components/Editing/MealIngredientEditor.vue', () => {
   let store: Store<{ ingredients: Ingredient[] }>
   let mealIngredients: MealIngredient[]
 
-  beforeEach(() => {
-    // Add some wholesomeness to these tests!
-    const ingredientA = new Ingredient('Air', 'balloons', IngredientCategory.snacks)
-    const ingredientB = new Ingredient('Fun', 'smiles', IngredientCategory.deli)
-    const ingredientC = new Ingredient('Happiness', 'smiles', IngredientCategory.deli)
+  // Add some wholesomeness to these tests!
+  const ingredientA = new Ingredient('Air', 'balloons', IngredientCategory.snacks)
+  const ingredientB = new Ingredient('Fun', 'smiles', IngredientCategory.deli)
+  const ingredientC = new Ingredient('Happiness', 'smiles', IngredientCategory.deli)
 
+  beforeEach(() => {
     const mealIngredientA = new MealIngredient(ingredientA, 14)
     const mealIngredientB = new MealIngredient(ingredientB, 13)
 
@@ -96,9 +97,8 @@ describe('components/Editing/MealIngredientEditor.vue', () => {
       expect(emittedEvents[0][0][0].ingredient.name).toEqual('Air')
     }
 
-    const ingredientSelect = wrapper.findAll('select').at(0)
-    ingredientSelect.findAll('option').at(2).setSelected()
-    ingredientSelect.trigger('input')
+    const ingredientSelect = wrapper.findComponent(ModelSelect)
+    ingredientSelect.vm.$emit('input', JSON.stringify(ingredientC))
 
     await wrapper.vm.$nextTick()
 

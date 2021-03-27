@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="meal-ingredient-editor">
     <f-button class="w-full mb-2" @click="addIngredient">
       <font-awesome-icon :icon="['fas', 'cart-plus']" class="mr-4" />
       {{ $t('meals.edit.addIngredient') }}
@@ -20,20 +20,12 @@
         <span class="mr-4">
           {{ mealIngredient.ingredient.unit }}
         </span>
-        <select
-          :id="`${mealIngredient.ingredient.name}_${index}_ingredient`"
-          class="border-b-2 border-black bg-transparent focus:bg-yellow-200 p-2 outline-none mr-4 flex-1 w-full"
+        <model-select
+          class="search-select"
+          :value="JSON.stringify(mealIngredient.ingredient)"
+          :options="sortedIngredientsOptions"
           @input="e => updateIngredient(index, e)"
-        >
-          <option
-            v-for="(ingredient, ingredientIndex) in sortedIngredients"
-            :key="`${ingredient.name}_select_${index}_${ingredientIndex}`"
-            :selected="ingredient.name === mealIngredient.ingredient.name"
-            :value="ingredientIndex"
-          >
-            {{ ingredient.name }}
-          </option>
-        </select>
+        />
       </li>
     </ul>
   </div>
@@ -42,12 +34,14 @@
 <script lang="ts">
 import { Vue, Component, Provide, Prop } from 'vue-property-decorator'
 import { deserialize } from 'typescript-json-serializer'
+import { ModelSelect } from 'vue-search-select'
 import { MealIngredient } from '~/model/meal/MealIngredient'
 import { Ingredient } from '~/model/meal/Ingredient'
 import FButton from '~/components/FButton.vue'
+import { IngredientCategory } from '~/model/meal/IngredientCategory'
 
 @Component({
-  components: { FButton }
+  components: { FButton, ModelSelect }
 })
 export default class IngredientEditor extends Vue {
   @Prop({ required: true }) readonly value!: MealIngredient[]
@@ -62,7 +56,7 @@ export default class IngredientEditor extends Vue {
    * All ingredients, sorted alphabetically.
    */
   get sortedIngredients (): Ingredient[] {
-    return this.ingredients.sort((a: Ingredient, b: Ingredient): number => {
+    return [...this.ingredients].sort((a: Ingredient, b: Ingredient): number => {
       const textA = a.name.toUpperCase()
       const textB = b.name.toUpperCase()
 
@@ -71,12 +65,25 @@ export default class IngredientEditor extends Vue {
   }
 
   /**
+   * Sorted ingredients as a list for vue-search-select.
+   */
+  get sortedIngredientsOptions (): { value: string, text: string }[] {
+    return this.sortedIngredients.map((i: Ingredient) => ({
+      value: JSON.stringify(i),
+      text: i.name
+    }))
+  }
+
+  /**
    * Set a new ingredient
    * @param index Index of the meal ingredient
-   * @param e
+   * @param value
    */
-  updateIngredient (index: number, e: { target: { value: string } }): void {
-    this.innerValue[index].ingredient = this.ingredients[parseInt(e.target.value)]
+  updateIngredient (index: number, value: string): void {
+    const parsedValue: { name: string, unit: string, category: string } = JSON.parse(value)
+
+    // Make the JSON an Ingredient again
+    this.innerValue[index].ingredient = new Ingredient(parsedValue.name, parsedValue.unit, parsedValue.category as IngredientCategory)
     this.emitChange()
   }
 
