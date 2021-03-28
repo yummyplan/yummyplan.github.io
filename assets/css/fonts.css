@@ -1,6 +1,6 @@
 /* nanum-gothic-regular - latin */
 @font-face {
-  font-family: 'Nanum Gothic';
+  font-family: 'nanum';
   font-style: normal;
   font-weight: 400;
   src: url('../fonts/nanum-gothic-v17-latin-regular.eot'); /* IE9 Compat Modes */
@@ -13,7 +13,7 @@
 }
 /* nanum-gothic-700 - latin */
 @font-face {
-  font-family: 'Nanum Gothic';
+  font-family: 'nanum';
   font-style: normal;
   font-weight: 700;
   src: url('../fonts/nanum-gothic-v17-latin-700.eot'); /* IE9 Compat Modes */
