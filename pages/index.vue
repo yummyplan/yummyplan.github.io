@@ -257,6 +257,10 @@ export default class Index extends Mixins(DownloadMixin) {
     }
 
     items.forEach((item: GroceryListItem) => {
+      if (!item.category) {
+        item.category = IngredientCategory.uncategorized
+      }
+
       categorized[item.category].push(item)
     })
 
